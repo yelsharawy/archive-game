@@ -8,8 +8,8 @@ func _ready() -> void:
 	texture_button.pressed.connect(func() -> void:
 		if _stack.is_empty():
 			return
-		get_tree().change_scene_to_packed(_stack.back())
 		_stack.pop_back()
+		get_tree().change_scene_to_packed(_stack.back())
 		if _stack.size() <= 1:
 			texture_button.visible = false
 		)
