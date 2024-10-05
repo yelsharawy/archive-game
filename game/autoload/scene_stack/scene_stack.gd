@@ -27,10 +27,14 @@ func register_game_autoload(autoload: Node) -> void:
 	_reparent_autoload.call_deferred(autoload)
 
 func switch_scene(new_scene: PackedScene) -> void:
-	if _current_scene:
-		game_root.remove_child(_current_scene)
-	_current_scene = new_scene.instantiate()
-	game_root.add_child(_current_scene)
+	if game_root:
+		if _current_scene:
+			game_root.remove_child(_current_scene)
+		_current_scene = new_scene.instantiate()
+		game_root.add_child(_current_scene)
+	else:
+		get_tree().change_scene_to_packed(new_scene)
+
 
 func _reparent_autoload(autoload: Node) -> void:
 	if not autoload.get_parent():

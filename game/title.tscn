@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f73veduoei1s"]
 
 [ext_resource type="Script" path="res://game/title.gd" id="1_667uk"]
-[ext_resource type="PackedScene" uid="uid://cvrnyp41shoaa" path="res://game/level_select.tscn" id="2_lap5n"]
+[ext_resource type="PackedScene" uid="uid://cvrnyp41shoaa" path="res://game/level_select.tscn" id="2_kioyh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cbw7s"]
 font_size = 64
@@ -14,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_667uk")
-level_select = ExtResource("2_lap5n")
+level_select = ExtResource("2_kioyh")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
