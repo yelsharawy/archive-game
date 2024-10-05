@@ -1,3 +1,246 @@
-[gd_scene format=3 uid="uid://bo0djupf1ko3b"]
+[gd_scene load_steps=32 format=3 uid="uid://bo0djupf1ko3b"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Theme" uid="uid://krldv7tjslsa" path="res://browser.theme" id="1_30lqj"]
+[ext_resource type="Texture2D" uid="uid://dr4p6re2wh2u2" path="res://window_area.png" id="2_6ul27"]
+[ext_resource type="Script" path="res://TitleBar.gd" id="2_gn064"]
+[ext_resource type="Texture2D" uid="uid://hqhth2fdrc5n" path="res://window_titlebar.png" id="3_7gjgm"]
+[ext_resource type="Texture2D" uid="uid://dw0y5xgc8kk51" path="res://windows_reference.png" id="5_lctp4"]
+
+[sub_resource type="SystemFont" id="SystemFont_uak8e"]
+font_names = PackedStringArray("Trebuchet MS")
+font_weight = 600
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rvku"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r8wm2"]
+load_path = "res://.godot/imported/windows_reference.png-5c7ee57d2335de120c0f641c99f6b33c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v28p6"]
+atlas = SubResource("CompressedTexture2D_r8wm2")
+region = Rect2(3, 344, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cnhpl"]
+texture = SubResource("AtlasTexture_v28p6")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y6n0l"]
+load_path = "res://.godot/imported/windows_reference.png-5c7ee57d2335de120c0f641c99f6b33c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3vgb"]
+atlas = SubResource("CompressedTexture2D_y6n0l")
+region = Rect2(3, 365, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ietwk"]
+texture = SubResource("AtlasTexture_r3vgb")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s23kt"]
+load_path = "res://.godot/imported/windows_reference.png-5c7ee57d2335de120c0f641c99f6b33c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3e02"]
+atlas = SubResource("CompressedTexture2D_s23kt")
+region = Rect2(3, 323, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjpvp"]
+texture = SubResource("AtlasTexture_f3e02")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru0ag"]
+atlas = ExtResource("5_lctp4")
+region = Rect2(27, 344, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8a8pl"]
+texture = SubResource("AtlasTexture_ru0ag")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rmr58"]
+load_path = "res://.godot/imported/windows_reference.png-5c7ee57d2335de120c0f641c99f6b33c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh121"]
+atlas = SubResource("CompressedTexture2D_rmr58")
+region = Rect2(27, 365, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ie4sf"]
+texture = SubResource("AtlasTexture_yh121")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s5k40"]
+load_path = "res://.godot/imported/windows_reference.png-5c7ee57d2335de120c0f641c99f6b33c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brsao"]
+atlas = SubResource("CompressedTexture2D_s5k40")
+region = Rect2(27, 323, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3vb3c"]
+texture = SubResource("AtlasTexture_brsao")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_58lnl"]
+load_path = "res://.godot/imported/windows_reference.png-5c7ee57d2335de120c0f641c99f6b33c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4psm"]
+atlas = SubResource("CompressedTexture2D_58lnl")
+region = Rect2(75, 344, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fyayh"]
+texture = SubResource("AtlasTexture_l4psm")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4gfq"]
+atlas = ExtResource("5_lctp4")
+region = Rect2(75, 365, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g27eq"]
+texture = SubResource("AtlasTexture_u4gfq")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v446a"]
+atlas = ExtResource("5_lctp4")
+region = Rect2(75, 323, 21, 21)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8vps"]
+texture = SubResource("AtlasTexture_v446a")
+
+[node name="Window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_30lqj")
+
+[node name="Visual" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6ul27")
+patch_margin_left = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="TitleBar" type="Control" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.0
+grow_horizontal = 2
+script = ExtResource("2_gn064")
+
+[node name="Visual" type="NinePatchRect" parent="TitleBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.0
+grow_horizontal = 2
+texture = ExtResource("3_7gjgm")
+region_rect = Rect2(0, 0, 66, 29)
+patch_margin_left = 28
+patch_margin_right = 38
+
+[node name="Label" type="Label" parent="TitleBar"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 2.0
+offset_right = 148.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_uak8e")
+theme_override_font_sizes/font_size = 13
+text = "VirtNet Explorer"
+vertical_alignment = 1
+
+[node name="Minimize" type="Button" parent="TitleBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -9.5
+offset_right = -51.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cnhpl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ietwk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vjpvp")
+
+[node name="Maximize" type="Button" parent="TitleBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -9.5
+offset_right = -28.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8a8pl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ie4sf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3vb3c")
+
+[node name="Close" type="Button" parent="TitleBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -9.5
+offset_right = -5.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fyayh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g27eq")
+theme_override_styles/normal = SubResource("StyleBoxTexture_i8vps")
+
+[node name="WindowContent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 29.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="WindowContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="ArchiveGames" type="ScrollContainer" parent="WindowContent/TabContainer"]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="Control" parent="WindowContent/TabContainer/ArchiveGames"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_gui_input"]
+[connection signal="gui_input" from="TitleBar/Visual" to="TitleBar/Visual" method="_on_gui_input"]
+[connection signal="pressed" from="TitleBar/Minimize" to="TitleBar" method="minimize"]
+[connection signal="pressed" from="TitleBar/Maximize" to="TitleBar" method="toggle_fullscreen"]
+[connection signal="pressed" from="TitleBar/Close" to="TitleBar" method="close"]
