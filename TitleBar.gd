@@ -38,7 +38,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			dragging_start_position = Vector2i(event.global_position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var window = get_window()
 	if set_unmax_pos:
 		# TODO: this doesn't work at all, fix it

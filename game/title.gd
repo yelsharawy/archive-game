@@ -7,11 +7,12 @@ extends Control
 
 func _ready() -> void:
 	button.pressed.connect(func() -> void:
-		get_tree().change_scene_to_packed(level_select)
-		)
+		get_parent().add_child(level_select.instantiate())
+		queue_free()
+	)
 	quit_button.pressed.connect(func() -> void:
 		get_tree().quit()
-		)
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
