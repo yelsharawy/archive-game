@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dmt5hk2fn1bek"
+path="res://.godot/imported/inventory_bg.aseprite-cb6964b6126391e808c0f07ee95b7b29.res"
+
+[deps]
+
+source_file="res://assets/programmer/ui/inventory_bg.aseprite"
+dest_files=["res://.godot/imported/inventory_bg.aseprite-cb6964b6126391e808c0f07ee95b7b29.res"]
+
+[params]
+

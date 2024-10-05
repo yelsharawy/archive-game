@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://bn73x67dt5qs3"
+path="res://.godot/imported/back_arrow_hovered.aseprite-80761c4ddc2f889e7075d9cac53429ee.res"
+
+[deps]
+
+source_file="res://assets/programmer/ui/back_arrow_hovered.aseprite"
+dest_files=["res://.godot/imported/back_arrow_hovered.aseprite-80761c4ddc2f889e7075d9cac53429ee.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5wuhuk578qcy"]
+
+[ext_resource type="Script" path="res://game/autoload/inventory/inventory.gd" id="1_ryo42"]
+[ext_resource type="Texture2D" uid="uid://dlhsji3b0sohn" path="res://game/autoload/inventory/inventory_bg.png" id="2_5pdah"]
+
+[node name="Inventory" type="Node" node_paths=PackedStringArray("_virtual_position_top", "_virtual_position_bottom", "_bottomost_clickable")]
+script = ExtResource("1_ryo42")
+_virtual_position_top = NodePath("Sprite2D/InventoryTop")
+_virtual_position_bottom = NodePath("Sprite2D/InventoryBottom")
+_bottomost_clickable = NodePath("Sprite2D/ClickSwallowArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+texture = ExtResource("2_5pdah")
+centered = false
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/programmer/ui/inventory_bg.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": false,
+"output_section": true,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "64322b285066866e1c9c863745d0c792"
+
+[node name="ClickSwallowArea" type="Area2D" parent="Sprite2D"]
+z_index = 10
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/ClickSwallowArea"]
+polygon = PackedVector2Array(487, 1, 550, 1, 550, 303, 483, 234)
+
+[node name="InventoryTop" type="Marker2D" parent="Sprite2D"]
+position = Vector2(518, 16)
+
+[node name="InventoryBottom" type="Marker2D" parent="Sprite2D"]
+position = Vector2(524, 241)

@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvrnyp41shoaa"]
+
+[ext_resource type="Script" path="res://game/level_select.gd" id="1_o5t0d"]
+[ext_resource type="PackedScene" uid="uid://l0k6eqe1wbh0" path="res://game/levels/level_one/level_one.tscn" id="2_mlfct"]
+
+[node name="LevelSelect" type="Control" node_paths=PackedStringArray("button_parent")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5t0d")
+button_parent = NodePath("CenterContainer/VBoxContainer/LevelSelectHBox")
+level_scenes = Array[PackedScene]([ExtResource("2_mlfct")])
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="LevelSelectHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button1" type="Button" parent="CenterContainer/VBoxContainer/LevelSelectHBox"]
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer/LevelSelectHBox"]
+layout_mode = 2
+disabled = true
+text = "2"
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer/LevelSelectHBox"]
+layout_mode = 2
+disabled = true
+text = "3
+"
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "BACK
+"

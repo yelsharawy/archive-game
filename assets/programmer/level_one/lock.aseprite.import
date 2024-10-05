@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bqojlahuklqkb"
+path="res://.godot/imported/lock.aseprite-146355e66ab30fb9bd3f9aa181270ec1.res"
+
+[deps]
+
+source_file="res://assets/programmer/level_one/lock.aseprite"
+dest_files=["res://.godot/imported/lock.aseprite-146355e66ab30fb9bd3f9aa181270ec1.res"]
+
+[params]
+

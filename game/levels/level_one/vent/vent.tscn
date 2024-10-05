@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://c27ohu837sybk"]
+
+[ext_resource type="Texture2D" uid="uid://du1pmg5m32ycw" path="res://game/levels/level_one/vent/vent.png" id="1_a7r5s"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="2_feu20"]
+[ext_resource type="Script" path="res://game/levels/level_one/vent/vent_cover.gd" id="2_k7bwy"]
+[ext_resource type="Texture2D" uid="uid://cx0cu1rvnnewd" path="res://game/levels/level_one/vent/vent-cover.png" id="3_1rps2"]
+
+[node name="Vent" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_a7r5s")
+centered = false
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/programmer/level_one/vent.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "b80ada95d7833a497fdadff594bd6ab2"
+
+[node name="VentCoverTransform" type="Node2D" parent="."]
+position = Vector2(75, 339)
+script = ExtResource("2_k7bwy")
+
+[node name="VentCover" type="Sprite2D" parent="VentCoverTransform"]
+texture_filter = 1
+position = Vector2(-75, -339)
+texture = ExtResource("3_1rps2")
+centered = false
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/programmer/level_one/vent-cover.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "62ce27a3529b55bd2ef73fe01d9f87d1"
+
+[node name="Interactable" parent="VentCoverTransform" instance=ExtResource("2_feu20")]
+position = Vector2(-75, -339)
+
+[node name="Area2D" type="Area2D" parent="VentCoverTransform/Interactable"]
+z_index = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentCoverTransform/Interactable/Area2D"]
+polygon = PackedVector2Array(65, 350, 65, 36, 476, 37, 469, 350)
