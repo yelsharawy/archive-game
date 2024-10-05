@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://l0k6eqe1wbh0"]
+[gd_scene load_steps=6 format=3 uid="uid://l0k6eqe1wbh0"]
 
 [ext_resource type="Texture2D" uid="uid://b2r1bufhh0h5h" path="res://game/levels/level_one/room.png" id="1_bqxhr"]
 [ext_resource type="PackedScene" uid="uid://bvwatuyc7tin4" path="res://game/components/scene_portal/scene_portal.tscn" id="2_olhgj"]
+[ext_resource type="PackedScene" uid="uid://363bd8g2afai" path="res://game/levels/level_one/shelf_right/shelf_right.tscn" id="3_hnnr1"]
 [ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="3_yg1d3"]
+[ext_resource type="PackedScene" uid="uid://bc2b82cpxock5" path="res://game/levels/level_one/shelf_left/shelf_left.tscn" id="5_ourgh"]
 
 [node name="LevelOne" type="Node2D"]
 
@@ -26,6 +28,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "3bbe3309181a1a2194e0611afd1dca54"
 
 [node name="RightShelf" parent="." instance=ExtResource("2_olhgj")]
 position = Vector2(43, 152)
+scene = ExtResource("3_hnnr1")
 
 [node name="Interactable" parent="RightShelf" instance=ExtResource("3_yg1d3")]
 
@@ -36,6 +39,7 @@ polygon = PackedVector2Array(405, -70, 347, -29, 339, 219, 404, 251, 508, 248, 5
 
 [node name="LeftShelf" parent="." instance=ExtResource("2_olhgj")]
 position = Vector2(43, 152)
+scene = ExtResource("5_ourgh")
 
 [node name="Interactable" parent="LeftShelf" instance=ExtResource("3_yg1d3")]
 
@@ -52,4 +56,4 @@ position = Vector2(43, 152)
 [node name="Area2D" type="Area2D" parent="DoorHandle/Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorHandle/Interactable/Area2D"]
-polygon = PackedVector2Array(196, 140, 162, 110, 162, 110, 147, 54, 191, 5, 229, 30, 213, 57, 246, 73, 274, 87, 274, 87, 266, 126, 224, 148)
+polygon = PackedVector2Array(196, 140, 162, 110, 162, 110, 147, 54, 191, 5, 228, 7, 255, 41, 272, 60, 274, 87, 274, 87, 266, 126, 224, 148)

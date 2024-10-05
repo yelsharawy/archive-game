@@ -5,7 +5,11 @@ signal hovered()
 signal unhovered()
 signal clicked()
 
-var _click_area: Area2D
+@export var _required_item: StringName = &""
+
+# NOTE: accessed by the Inventory if this Interactable is used on an Item.
+# the inventory will change the click area's z index to be on top of everything else
+var click_area: Area2D
 
 var _is_hovered: bool = false
 
@@ -15,16 +19,16 @@ var is_hovered: bool:
 		return _is_hovered
 
 func _ready() -> void:
-	_click_area = ComponentUtil.get_one_child_of_type(self, Area2D)
+	click_area = ComponentUtil.get_one_child_of_type(self, Area2D)
 
-	_click_area.input_event.connect(area_input)
-	_click_area.mouse_entered.connect(func():
+	click_area.input_event.connect(area_input)
+	click_area.mouse_entered.connect(func():
 		hovered.emit()
 		_is_hovered = true)
-	_click_area.mouse_exited.connect(func():
+	click_area.mouse_exited.connect(func():
 		unhovered.emit()
 		_is_hovered = false)
 
 func area_input(viewport: Node, ev: InputEvent, shape: int) -> void:
-	if ev.is_action_pressed(&"mouse_click_primary"):
+	if Inventory.is_item_active(_required_item) and ev.is_action_pressed(&"mouse_click_primary"):
 		clicked.emit()

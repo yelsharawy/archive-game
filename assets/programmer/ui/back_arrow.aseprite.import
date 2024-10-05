@@ -1,7 +1,7 @@
 [remap]
 
-importer="aseprite_wizard.plugin.noop"
-type="PackedDataContainer"
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
 uid="uid://djoytivy4wfs6"
 path="res://.godot/imported/back_arrow.aseprite-83342b7ae06879026f29f3ed6423baf6.res"
 
@@ -12,3 +12,5 @@ dest_files=["res://.godot/imported/back_arrow.aseprite-83342b7ae06879026f29f3ed6
 
 [params]
 
+exclude_layers_pattern=""
+only_visible_layers=false
