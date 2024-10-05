@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/autoload/inventory/inventory.gd" id="1_ryo42"]
 [ext_resource type="Texture2D" uid="uid://dlhsji3b0sohn" path="res://game/autoload/inventory/inventory_bg.png" id="2_5pdah"]
 
-[node name="Inventory" type="Node" node_paths=PackedStringArray("_virtual_position_top", "_virtual_position_bottom", "_bottomost_clickable")]
+[node name="Inventory" type="Node2D" node_paths=PackedStringArray("_virtual_position_top", "_virtual_position_bottom", "_bottomost_clickable")]
 script = ExtResource("1_ryo42")
 _virtual_position_top = NodePath("Sprite2D/InventoryTop")
 _virtual_position_bottom = NodePath("Sprite2D/InventoryBottom")
