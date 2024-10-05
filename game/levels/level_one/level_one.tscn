@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://l0k6eqe1wbh0"]
+
+[ext_resource type="Texture2D" uid="uid://b2r1bufhh0h5h" path="res://game/levels/level_one/room.png" id="1_bqxhr"]
+[ext_resource type="PackedScene" uid="uid://bvwatuyc7tin4" path="res://game/components/scene_portal/scene_portal.tscn" id="2_olhgj"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="3_yg1d3"]
+
+[node name="LevelOne" type="Node2D"]
+
+[node name="RoomSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_bqxhr")
+centered = false
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/programmer/level_one/room.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3bbe3309181a1a2194e0611afd1dca54"
+
+[node name="RightShelf" parent="." instance=ExtResource("2_olhgj")]
+position = Vector2(43, 152)
+
+[node name="Interactable" parent="RightShelf" instance=ExtResource("3_yg1d3")]
+
+[node name="Area2D" type="Area2D" parent="RightShelf/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightShelf/Interactable/Area2D"]
+polygon = PackedVector2Array(405, -70, 347, -29, 339, 219, 404, 251, 508, 248, 506, -105, 477, -109)
+
+[node name="LeftShelf" parent="." instance=ExtResource("2_olhgj")]
+position = Vector2(43, 152)
+
+[node name="Interactable" parent="LeftShelf" instance=ExtResource("3_yg1d3")]
+
+[node name="Area2D" type="Area2D" parent="LeftShelf/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftShelf/Interactable/Area2D"]
+polygon = PackedVector2Array(-42, -79, 44, -28, 51, 219, -3, 248, -44, 247)
+
+[node name="DoorHandle" parent="." instance=ExtResource("2_olhgj")]
+position = Vector2(43, 152)
+
+[node name="Interactable" parent="DoorHandle" instance=ExtResource("3_yg1d3")]
+
+[node name="Area2D" type="Area2D" parent="DoorHandle/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorHandle/Interactable/Area2D"]
+polygon = PackedVector2Array(196, 140, 162, 110, 162, 110, 147, 54, 191, 5, 229, 30, 213, 57, 246, 73, 274, 87, 274, 87, 266, 126, 224, 148)

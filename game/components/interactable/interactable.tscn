@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fr271v4iwjbn"]
+
+[ext_resource type="Script" path="res://game/components/interactable/interactable.gd" id="1_soryk"]
+
+[node name="Interactable" type="Node2D"]
+script = ExtResource("1_soryk")

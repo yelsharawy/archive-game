@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dvrgp8wkp8y73"
+path="res://.godot/imported/wrench.aseprite-9c782668d1cbe9e7f1a20e2d3f59ad32.res"
+
+[deps]
+
+source_file="res://assets/programmer/level_one/wrench.aseprite"
+dest_files=["res://.godot/imported/wrench.aseprite-9c782668d1cbe9e7f1a20e2d3f59ad32.res"]
+
+[params]
+

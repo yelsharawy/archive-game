@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvwatuyc7tin4"]
+
+[ext_resource type="Script" path="res://game/components/scene_portal/scene_portal.gd" id="1_lhm8s"]
+
+[node name="ScenePortal" type="Node2D"]
+script = ExtResource("1_lhm8s")
