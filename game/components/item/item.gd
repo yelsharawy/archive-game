@@ -11,6 +11,8 @@ func _place_in_world(new_parent: Node, keep_transform: bool) -> void:
 	reparent(new_parent, keep_transform)
 
 func _ready() -> void:
+	if not interactable:
+		interactable = ComponentUtil.get_one_child_of_type(self, Interactable)
 	interactable.clicked.connect(_pick_up)
 
 func _pick_up() -> void:
