@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://djoytivy4wfs6" path="res://assets/programmer/ui/back_arrow.aseprite" id="2_vqiep"]
 [ext_resource type="Texture2D" uid="uid://bn73x67dt5qs3" path="res://assets/programmer/ui/back_arrow_hovered.aseprite" id="3_mmp24"]
 
-[node name="SceneStack" type="Node"]
+[node name="SceneStack" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_7vh0y")
 
 [node name="TextureButton" type="TextureButton" parent="."]

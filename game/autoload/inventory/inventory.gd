@@ -20,6 +20,7 @@ var _item_tween: Dictionary
 
 func _ready() -> void:
 	sprite_2d.visible = false
+	SceneStack.register_game_autoload(self)
 
 func set_visible(value: bool) -> void:
 	sprite_2d.visible = value
