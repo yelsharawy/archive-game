@@ -450,7 +450,6 @@ current_tab = 0
 
 [node name="ArchiveGames" type="ScrollContainer" parent="WindowContent/TabContainer"]
 layout_mode = 2
-mouse_filter = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 metadata/_tab_index = 0
@@ -703,11 +702,16 @@ mouse_filter = 1
 mouse_default_cursor_shape = 1
 bbcode_enabled = true
 text = "[b][font_size=\"18px\"]About the Creator[/font_size][/b]
-[p]I love games! I always wanted to make something for others to enjoy, and puzzles are my favorite kind of game, so I'm trying really hard to learn to code. The things I make might break, but I'm only a DM away from helping you out![/p]
+[p]I love games! I always wanted to make something others could enjoy, and puzzles are my favorite kind of game, so I'm trying really hard to learn to code. The things I make might break, but I'm only a DM away from helping you out![/p]
+[b]Last Online:[/b] 12 years ago
 "
 fit_content = true
 scroll_active = false
 selection_enabled = true
+
+[node name="HSeparator4" type="HSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/EvilSizeChangingControl/HBoxContainer/RightColumn"]
+layout_mode = 2
+mouse_filter = 1
 
 [node name="VSeparator2" type="VSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/EvilSizeChangingControl/HBoxContainer"]
 layout_mode = 2
