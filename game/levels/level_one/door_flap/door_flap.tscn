@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bklylosxj8fwi"]
+
+[ext_resource type="Texture2D" uid="uid://b3gu38wf1f6xx" path="res://assets/programmer/level_one/doorflap.png" id="1_47v62"]
+[ext_resource type="Script" path="res://game/levels/level_one/door_flap/door_flap.gd" id="1_g2cbm"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="1_qxrok"]
+[ext_resource type="Resource" uid="uid://o5bgm1nefhl5" path="res://game/levels/level_one/door_flap/door_flap_set_down_location_responses.tres" id="4_d57up"]
+
+[node name="DoorFlap" type="Node2D" node_paths=PackedStringArray("place_location")]
+script = ExtResource("1_g2cbm")
+place_location = NodePath("PlaceLocation")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_47v62")
+centered = false
+
+[node name="PlaceLocation" type="Marker2D" parent="."]
+position = Vector2(216, 377)
+
+[node name="SetDownLocation" parent="." instance=ExtResource("1_qxrok")]
+_required_item = &"ANYITEM"
+responses = ExtResource("4_d57up")
+
+[node name="Area2D" type="Area2D" parent="SetDownLocation"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SetDownLocation/Area2D"]
+polygon = PackedVector2Array(168, 390, 156, 370, 201, 350, 270, 353, 278, 380, 255, 397, 186, 401)
+
+[connection signal="clicked" from="SetDownLocation" to="." method="interacted"]

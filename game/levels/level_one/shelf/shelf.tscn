@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxku36gxwsvj2"]
+
+[ext_resource type="Texture2D" uid="uid://bvhx5ti0n8mvi" path="res://assets/programmer/level_one/shelf-right.png" id="1_d72nt"]
+[ext_resource type="PackedScene" uid="uid://bvwatuyc7tin4" path="res://game/components/scene_portal/scene_portal.tscn" id="2_lv5bv"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="3_8dm41"]
+[ext_resource type="PackedScene" uid="uid://dhis085ahwn6d" path="res://game/levels/level_one/shelf_spider/shelf_spider.tscn" id="3_a8x8p"]
+
+[node name="Shelf" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_d72nt")
+centered = false
+
+[node name="ScenePortal" parent="." instance=ExtResource("2_lv5bv")]
+scene = ExtResource("3_a8x8p")
+
+[node name="Interactable" parent="ScenePortal" instance=ExtResource("3_8dm41")]
+
+[node name="Area2D" type="Area2D" parent="ScenePortal/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ScenePortal/Interactable/Area2D"]
+polygon = PackedVector2Array(135, 272, 139, 238, 197, 218, 244, 239, 233, 287, 146, 286)

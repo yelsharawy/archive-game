@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dbpbfoyh7syrw"
+path="res://.godot/imported/potion_spider.aseprite-8feda8d4a1e09b7f0157f1fe31b7d600.res"
+
+[deps]
+
+source_file="res://assets/programmer/level_one/potion_spider.aseprite"
+dest_files=["res://.godot/imported/potion_spider.aseprite-8feda8d4a1e09b7f0157f1fe31b7d600.res"]
+
+[params]
+

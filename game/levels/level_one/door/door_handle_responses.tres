@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Responses" load_steps=2 format=3 uid="uid://bylhq5526j3ip"]
+
+[ext_resource type="Script" path="res://game/components/interactable/responses.gd" id="1_uugqk"]
+
+[resource]
+script = ExtResource("1_uugqk")
+missing_required_responses = ["It's locked...", "Locked..."]
+wrong_item_responses = ["That won't work here..."]
+special_item_responses = {
+"crowbar": "Nice try, but this is a heavy-duty knob.",
+"example_item": {
+"npc_name": "ghost",
+"remark": "What?"
+},
+"example_item_two": "I don't know about using that here..."
+}

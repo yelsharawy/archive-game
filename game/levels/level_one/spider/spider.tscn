@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://by6np47wr3jj1"]
+
+[ext_resource type="Texture2D" uid="uid://cnr8hdb6oapjr" path="res://assets/programmer/level_one/spider.png" id="1_3fi3a"]
+[ext_resource type="Script" path="res://game/levels/level_one/spider/spider.gd" id="1_od27l"]
+[ext_resource type="PackedScene" uid="uid://b1orwamk73h8" path="res://game/components/item/item.tscn" id="2_cvoxu"]
+[ext_resource type="Texture2D" uid="uid://cca0iix4ecufs" path="res://assets/programmer/level_one/spider_item.png" id="3_kegdu"]
+[ext_resource type="Texture2D" uid="uid://capehqfq0iiko" path="res://assets/programmer/level_one/two_spiders.png" id="4_2jq4i"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="4_5ek5y"]
+
+[node name="Spider" type="Node2D"]
+script = ExtResource("1_od27l")
+lines = Array[String](["I'm looking to move in with a nice lady. Til then, I'm staying right here.", "It's hard, building a web on your own."])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_3fi3a")
+centered = false
+
+[node name="SpiderSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_kegdu")
+centered = false
+
+[node name="Interactable" parent="SpiderSprite" instance=ExtResource("4_5ek5y")]
+_required_item = &"ANYITEM_OR_EMPTYHAND"
+
+[node name="Area2D" type="Area2D" parent="SpiderSprite/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpiderSprite/Interactable/Area2D"]
+polygon = PackedVector2Array(51, 131, 100, 50, 296, 44, 338, -4, 355, 64, 424, 37, 439, 152, 435, 232, 456, 308, 351, 350, 283, 393, 205, 371, 140, 367, 84, 347, 78, 313, 39, 235)
+
+[node name="Item" parent="." instance=ExtResource("2_cvoxu")]
+visible = false
+position = Vector2(252, 207)
+id = &"spiders"
+
+[node name="DoubleSpider" type="Sprite2D" parent="Item"]
+texture_filter = 1
+position = Vector2(-76, -61)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_2jq4i")
+centered = false
+
+[node name="Interactable" parent="Item" instance=ExtResource("4_5ek5y")]
+position = Vector2(-76, -61)
+scale = Vector2(0.75, 0.75)
+
+[node name="Area2D" type="Area2D" parent="Item/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Item/Interactable/Area2D"]
+polygon = PackedVector2Array(15, 29, 33, -6, 131, -1, 160, 54, 204, 133, 177, 175, 122, 183, 64, 152, 23, 112, 6, 72)
+
+[connection signal="clicked" from="SpiderSprite/Interactable" to="." method="interacted"]

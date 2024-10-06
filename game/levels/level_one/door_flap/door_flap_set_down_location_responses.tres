@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Responses" load_steps=2 format=3 uid="uid://o5bgm1nefhl5"]
+
+[ext_resource type="Script" path="res://game/components/interactable/responses.gd" id="1_sxe05"]
+
+[resource]
+script = ExtResource("1_sxe05")
+missing_required_responses = ["???"]
+wrong_item_responses = ["That won't work here..."]
+special_item_responses = {
+"example_item": {
+"npc_name": "ghost",
+"remark": "What?"
+},
+"example_item_two": "I don't know about using that here..."
+}

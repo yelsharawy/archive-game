@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b6b7xi3er61ew"
+path="res://.godot/imported/doorflap.aseprite-7dfcebb57dbb9a7abaedd3bc550b49ce.res"
+
+[deps]
+
+source_file="res://assets/programmer/level_one/doorflap.aseprite"
+dest_files=["res://.godot/imported/doorflap.aseprite-7dfcebb57dbb9a7abaedd3bc550b49ce.res"]
+
+[params]
+

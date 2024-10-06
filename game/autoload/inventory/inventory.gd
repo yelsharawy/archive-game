@@ -8,6 +8,7 @@ const TIME_TO_INVENTORY_TWEEN: float = 0.1
 @export var _bottomost_clickable: Area2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var click_swallow_area: Area2D = $Sprite2D/ClickSwallowArea
 
 var _items: Dictionary
 var _active_item: Item
@@ -21,9 +22,20 @@ var _item_tween: Dictionary
 func _ready() -> void:
 	sprite_2d.visible = false
 	SceneStack.register_game_autoload(self)
+	# keep ourselves at the bottom of the scene tree, so we get input before game
+	SceneStack.scene_switched.connect(func() -> void:
+		get_parent().move_child(self, get_parent().get_child_count())
+		)
+	click_swallow_area.input_event.connect(func(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+		if event.is_action(&"mouse_click_primary"):
+			viewport.set_input_as_handled()
+	)
 
 func set_visible(value: bool) -> void:
 	sprite_2d.visible = value
+
+func get_active_item() -> StringName:
+	return _active_item.id if _active_item else &""
 
 ## This is how items enter the inventory, adding an entry in all the dictionaries
 ## that track its original state
@@ -66,27 +78,43 @@ func place_down(target: Node) -> void:
 	if not _active_item:
 		return
 	var id = _active_item.id
+	# remove the virtual parent node2d that gets created when items enter the inventory
+	_active_item.get_parent().queue_free()
+
+	# reparent and connect signals
 	_active_item._place_in_world(target, true)
+
+	# disconnect the inventory ui event(s), restore z index
 	_active_item.interactable.clicked.disconnect(_item_inventory_events[_active_item.id])
 	_active_item.z_index = _item_click_area_z_index[_active_item.id]
+
+	# erase cache (not erasing tween cuz i think I'd have to wait for it to be over?)
 	_item_inventory_events.erase(_active_item.id)
 	_items.erase(_active_item.id)
 	_item_click_area_z_index.erase(_active_item.id)
-	var tween = _item_tween.get(_active_item.id)
-	if tween:
-		tween.kill()
-		_item_tween.erase(_active_item.id)
+
+	_tween_item_to_zero(_active_item)
+	_active_item = null
 
 func has_item(item: StringName) -> bool:
 	return _items.has(item)
 
 ## Check if an item is currently being held (appearing under the cursor)
+## &"ANYITEM" is a required item name that can be used by interactables to
+## allow any item to be clicked.
+## &"ANYITEM_OR_EMPTYHAND" is a required item name that can be used by
+## interactables to make sure they always emit clicked, no matter what
+## the player clicks on them with.
 func is_item_active(item: StringName) -> bool:
 	if item.is_empty():
 		# requires no active item
 		return _active_item == null
+	if item == &"ANYITEM_OR_EMPTYHAND":
+		return true
 	if not _active_item:
 		return false
+	if item == &"ANYITEM":
+		return true
 	return item == _active_item.id
 
 ## Check if there is an item active or not
