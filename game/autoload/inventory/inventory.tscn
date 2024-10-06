@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5wuhuk578qcy"]
+[gd_scene load_steps=4 format=3 uid="uid://b5wuhuk578qcy"]
 
 [ext_resource type="Script" path="res://game/autoload/inventory/inventory.gd" id="1_ryo42"]
 [ext_resource type="Texture2D" uid="uid://dlhsji3b0sohn" path="res://game/autoload/inventory/inventory_bg.png" id="2_5pdah"]
+[ext_resource type="AudioStream" uid="uid://tdibe11ygqam" path="res://assets/game_sounds/grab_item.mp3" id="3_yvwfa"]
 
 [node name="Inventory" type="Node2D" node_paths=PackedStringArray("_virtual_position_top", "_virtual_position_bottom", "_bottomost_clickable")]
 script = ExtResource("1_ryo42")
@@ -45,3 +46,6 @@ position = Vector2(518, 16)
 
 [node name="InventoryBottom" type="Marker2D" parent="Sprite2D"]
 position = Vector2(524, 241)
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yvwfa")
