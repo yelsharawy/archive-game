@@ -13,3 +13,8 @@ func _ready() -> void:
 	quit_button.pressed.connect(func() -> void:
 		get_tree().quit()
 	)
+
+	var move_index := func() -> void:
+		get_parent().move_child(self, get_parent().get_child_count() - 1)
+
+	move_index.call_deferred()
