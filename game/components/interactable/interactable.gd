@@ -29,6 +29,7 @@ func _ready() -> void:
 		unhovered.emit()
 		_is_hovered = false)
 
-func area_input(viewport: Node, ev: InputEvent, shape: int) -> void:
+func area_input(viewport: Node, ev: InputEvent, _shape: int) -> void:
 	if Inventory.is_item_active(_required_item) and ev.is_action_pressed(&"mouse_click_primary"):
 		clicked.emit()
+		viewport.set_input_as_handled()
