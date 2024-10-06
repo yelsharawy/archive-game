@@ -86,6 +86,10 @@ func is_item_active(item: StringName) -> bool:
 		return false
 	return item == _active_item.id
 
+## Check if there is an item active or not
+func is_any_item_active() -> bool:
+	return _active_item != null
+
 func release_active_item() -> void:
 	if not is_instance_valid(_active_item):
 		return

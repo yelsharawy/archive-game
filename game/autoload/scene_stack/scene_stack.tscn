@@ -7,10 +7,12 @@
 [node name="SceneStack" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_7vh0y")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 z_index = 10
+layout_mode = 0
 offset_left = 19.0
 offset_top = 258.0
 offset_right = 83.0

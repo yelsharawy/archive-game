@@ -16,5 +16,6 @@ func _ready() -> void:
 
 		b.pressed.connect(func() -> void:
 			SceneStack.push(level_scenes[idx])
+			visible = false
 			)
 		idx += 1

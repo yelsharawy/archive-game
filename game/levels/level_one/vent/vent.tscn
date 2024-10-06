@@ -50,6 +50,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "62ce27a3529b55bd2ef73fe01d9f87d1"
 
 [node name="Interactable" parent="VentCoverTransform" instance=ExtResource("2_feu20")]
 position = Vector2(-75, -339)
+one_time_use = true
 _required_item = &"screwdriver"
 
 [node name="Area2D" type="Area2D" parent="VentCoverTransform/Interactable"]
