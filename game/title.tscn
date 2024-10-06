@@ -29,7 +29,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "ARCHIVE"
+text = "Potion Cellar"
 label_settings = SubResource("LabelSettings_cbw7s")
 
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
@@ -37,5 +37,6 @@ layout_mode = 2
 text = "START"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "QUIT"
