@@ -13,7 +13,7 @@ texture = ExtResource("1_o1wt4")
 centered = false
 
 [node name="Item" parent="." instance=ExtResource("2_lg7u1")]
-position = Vector2(172, 273)
+position = Vector2(394, 291)
 id = &"potion_spider"
 
 [node name="Sprite2D" type="Sprite2D" parent="Item"]
@@ -25,4 +25,4 @@ texture = ExtResource("3_81sj0")
 [node name="Area2D" type="Area2D" parent="Item/Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Item/Interactable/Area2D"]
-polygon = PackedVector2Array(-4, -46, 32, -23, 52, 19, -5, 53, -48, 24, -50, -27)
+polygon = PackedVector2Array(-26, -72, 41, -41, 102, 46, -5, 53, -107, 44, -91, -39)

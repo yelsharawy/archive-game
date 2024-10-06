@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dgs4h2algmd5r"]
+[gd_scene load_steps=26 format=3 uid="uid://dgs4h2algmd5r"]
 
 [ext_resource type="Texture2D" uid="uid://csubcyil28ij1" path="res://assets/programmer/level_one/vent.png" id="1_c88om"]
 [ext_resource type="Script" path="res://game/levels/level_one/vent/safe.gd" id="2_51qh4"]
@@ -39,23 +39,36 @@ special_item_responses = {
 size = Vector2(170, 244)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mithh"]
-size = Vector2(156, 90)
+size = Vector2(156, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfkr7"]
-size = Vector2(29.5, 128)
+size = Vector2(29.5, 178)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ork5"]
-size = Vector2(29.5, 25)
+size = Vector2(134.75, 25)
 
 [sub_resource type="LabelSettings" id="LabelSettings_b7qn7"]
 font = ExtResource("7_sk3p0")
 font_size = 40
+font_color = Color(0.403922, 0.388235, 0.388235, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjp2x"]
-size = Vector2(40, 40)
+size = Vector2(39.5, 50.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dm6rq"]
 size = Vector2(98, 24)
+
+[sub_resource type="Resource" id="Resource_fdd7u"]
+script = ExtResource("6_pa6md")
+missing_required_responses = ["I can't open it with my bare hands."]
+wrong_item_responses = ["That won't work here...", "Nope."]
+special_item_responses = {
+"example_item": {
+"npc_name": "ghost",
+"remark": "What?"
+},
+"example_item_two": "I don't know about using that here..."
+}
 
 [node name="Vent" type="Node2D"]
 
@@ -65,6 +78,7 @@ texture = ExtResource("1_c88om")
 centered = false
 
 [node name="WinGameInteractable" parent="." instance=ExtResource("3_mcdii")]
+visible = false
 position = Vector2(270, 188)
 _required_event = &"vent_cleared"
 
@@ -121,8 +135,11 @@ texture_filter = 1
 texture = ExtResource("5_6686p")
 
 [node name="SafeDoor" type="Node2D" parent="."]
-position = Vector2(131, 80)
+visible = false
+position = Vector2(159, 96)
+scale = Vector2(0.873115, 0.873115)
 script = ExtResource("6_gsq0p")
+pin = "1214"
 
 [node name="Event" parent="SafeDoor" instance=ExtResource("3_a570g")]
 event_name = &"safe_unlocked"
@@ -146,23 +163,23 @@ position = Vector2(59, 120)
 shape = SubResource("RectangleShape2D_o0a1g")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="SafeDoor/SafeDoorSprite/Interactable/Area2D"]
-position = Vector2(222, 43)
+position = Vector2(222, 25.5)
 shape = SubResource("RectangleShape2D_mithh")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="SafeDoor/SafeDoorSprite/Interactable/Area2D"]
-position = Vector2(286.25, 152)
+position = Vector2(293, 142)
 shape = SubResource("RectangleShape2D_cfkr7")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="SafeDoor/SafeDoorSprite/Interactable/Area2D"]
-position = Vector2(160, 233.5)
+position = Vector2(211.625, 228)
 shape = SubResource("RectangleShape2D_5ork5")
 
 [node name="Label" type="Label" parent="SafeDoor"]
 texture_filter = 1
-offset_left = 119.0
-offset_top = 47.0
-offset_right = 253.0
-offset_bottom = 87.0
+offset_left = 155.0
+offset_top = 5.0
+offset_right = 275.0
+offset_bottom = 45.0
 label_settings = SubResource("LabelSettings_b7qn7")
 horizontal_alignment = 2
 
@@ -174,7 +191,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable1/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(7, -32)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable2" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -185,7 +202,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable2/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(8, -31)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable3" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -196,7 +213,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable3/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(10, -31)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable4" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -207,7 +224,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable4"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable4/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(10, -18)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable5" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -218,7 +235,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable5"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable5/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(9.75, -20)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable6" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -229,7 +246,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable6"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable6/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(12, -19)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable7" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -240,7 +257,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable7"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable7/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(10, -7)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable8" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -251,7 +268,7 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable8"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable8/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(10, -9)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="Interactable9" parent="SafeDoor" instance=ExtResource("3_mcdii")]
@@ -262,10 +279,11 @@ _required_event = &"opened_vent"
 [node name="Area2D" type="Area2D" parent="SafeDoor/Interactable9"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable9/Area2D"]
-position = Vector2(2, 0)
+position = Vector2(10, -11)
 shape = SubResource("RectangleShape2D_cjp2x")
 
 [node name="InteractableClear" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+visible = false
 z_index = 1
 position = Vector2(197, 240)
 _required_event = &"opened_vent"
@@ -277,6 +295,7 @@ position = Vector2(31, -8)
 shape = SubResource("RectangleShape2D_dm6rq")
 
 [node name="VentTransform" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(85, 349)
 script = ExtResource("2_o3y3o")
 
@@ -293,12 +312,14 @@ centered = false
 position = Vector2(-86, -349)
 one_time_use = true
 _required_item = &"screwdriver"
+responses = SubResource("Resource_fdd7u")
 
 [node name="Area2D" type="Area2D" parent="VentTransform/Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentTransform/Interactable/Area2D"]
 polygon = PackedVector2Array(76, 32, 489, 33, 487, 369, 61, 370)
 
+[connection signal="on_happen" from="Safe/VentClearEvent" to="WinGameInteractable" method="set_visible" binds= [true]]
 [connection signal="clicked" from="Safe/SafeOpenItem/Interactable" to="Safe/VentClearEvent" method="happen"]
 [connection signal="clicked" from="Safe/AnvilItem/Interactable" to="Safe/AnvilEvent" method="happen"]
 [connection signal="correct_pin_entered" from="SafeDoor" to="Safe" method="safedoor_opened"]

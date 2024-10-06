@@ -22,6 +22,6 @@ responses = ExtResource("4_grtg5")
 [node name="Area2D" type="Area2D" parent="Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Area2D"]
-polygon = PackedVector2Array(103, 369, 130, 328, 144, 232, 173, 88, 265, 41, 338, 68, 355, 185, 363, 279, 375, 342, 411, 387, 340, 395, 119, 395, 99, 389)
+polygon = PackedVector2Array(74, 365, 77, 317, 79, 218, 139, 67, 258, 22, 347, 39, 398, 131, 464, 261, 449, 343, 439, 429, 343, 428, 126, 425, 85, 406)
 
 [connection signal="clicked" from="Interactable" to="." method="speak"]

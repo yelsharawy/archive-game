@@ -20,4 +20,5 @@ scene = ExtResource("3_a8x8p")
 [node name="Area2D" type="Area2D" parent="ScenePortal/Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ScenePortal/Interactable/Area2D"]
+position = Vector2(236, 84)
 polygon = PackedVector2Array(135, 272, 139, 238, 197, 218, 244, 239, 233, 287, 146, 286)

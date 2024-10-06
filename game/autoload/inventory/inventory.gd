@@ -127,10 +127,13 @@ func is_any_item_active() -> bool:
 func release_active_item() -> void:
 	if not is_instance_valid(_active_item):
 		return
-	_active_item.interactable.visible = true
+	var item := _active_item
+	var reenable = func() -> void:
+		item.interactable.visible = true
 	_active_item.get_parent().reparent(_virtual_position_top, true)
 	_active_item = null
 	_resolve_virtual_positions()
+	get_tree().create_timer(0.1).timeout.connect(reenable)
 
 ## Take the items that should be in the inventory and correctly space them out
 ## called whenever a player removes or adds an item from the inventory bar

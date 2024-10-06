@@ -16,7 +16,7 @@ centered = false
 
 [node name="PlaceLocation" type="Marker2D" parent="."]
 z_index = 1
-position = Vector2(216, 377)
+position = Vector2(344, 257)
 
 [node name="SetDownLocation" parent="." instance=ExtResource("1_qxrok")]
 _required_item = &"ANYITEM"
@@ -25,6 +25,7 @@ responses = ExtResource("4_d57up")
 [node name="Area2D" type="Area2D" parent="SetDownLocation"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SetDownLocation/Area2D"]
-polygon = PackedVector2Array(168, 390, 156, 370, 201, 350, 270, 353, 278, 380, 255, 397, 186, 401)
+position = Vector2(131, -134)
+polygon = PackedVector2Array(122, 411, 149, 341, 228, 306, 309, 319, 330, 380, 276, 461, 155, 479)
 
 [connection signal="clicked" from="SetDownLocation" to="." method="interacted"]

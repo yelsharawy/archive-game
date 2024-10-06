@@ -22,7 +22,9 @@ responses = ExtResource("3_noey6")
 [node name="Area2D" type="Area2D" parent="Handle"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Handle/Area2D"]
-polygon = PackedVector2Array(336, 173, 312, 163, 347, 149, 375, 152, 374, 169)
+position = Vector2(-36, -121)
+scale = Vector2(1, 2.08854)
+polygon = PackedVector2Array(327, 183.935, 296, 167.655, 324, 145.152, 392, 142.683, 391, 185.297)
 
 [node name="DoorFlap" parent="." instance=ExtResource("2_msinm")]
 scene = ExtResource("4_fy1xu")
@@ -32,10 +34,10 @@ scene = ExtResource("4_fy1xu")
 [node name="Area2D" type="Area2D" parent="DoorFlap/Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorFlap/Interactable/Area2D"]
-polygon = PackedVector2Array(221, 337, 218, 251, 325, 249, 338, 345)
+polygon = PackedVector2Array(221, 365, 218, 266, 320, 272, 321, 367)
 
 [node name="Crowbar" parent="." instance=ExtResource("2_7q170")]
-position = Vector2(472, 281)
+position = Vector2(416, 318)
 id = &"crowbar"
 
 [node name="Sprite2D" type="Sprite2D" parent="Crowbar"]
@@ -47,4 +49,4 @@ texture = ExtResource("3_rqyes")
 [node name="Area2D" type="Area2D" parent="Crowbar/Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Crowbar/Interactable/Area2D"]
-polygon = PackedVector2Array(-41, 42, -42, 19, -12, -17, -8, -37, -28, -90, 2, -90, 26, -49, 41, 16, 48, 56, 46, 92, 11, 99, -21, 80)
+polygon = PackedVector2Array(-44, 39, -34, 17, -21, -18, -11, -39, -5, -80, 29, -86, 21, -45, 4, 10, -4, 55, -22, 97, -51, 98, -52, 68)

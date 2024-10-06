@@ -22,24 +22,19 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_uwc4o")
-label = NodePath("CenterContainer/Control/Label")
+label = NodePath("CenterContainer/Label")
 player_font_settings = SubResource("LabelSettings_nlass")
 npc_font_settings = SubResource("LabelSettings_y77xx")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
+offset_top = 252.0
 offset_right = 550.0
 offset_bottom = 400.0
 
-[node name="Control" type="Control" parent="CenterContainer"]
+[node name="Label" type="Label" parent="CenterContainer"]
 layout_mode = 2
-mouse_filter = 1
-
-[node name="Label" type="Label" parent="CenterContainer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 mouse_filter = 1
 text = "DEFAULT"
 label_settings = SubResource("LabelSettings_66kn8")

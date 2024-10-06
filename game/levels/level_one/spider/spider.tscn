@@ -27,7 +27,7 @@ _required_item = &"ANYITEM_OR_EMPTYHAND"
 [node name="Area2D" type="Area2D" parent="SpiderSprite/Interactable"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpiderSprite/Interactable/Area2D"]
-polygon = PackedVector2Array(51, 131, 100, 50, 296, 44, 338, -4, 355, 64, 424, 37, 439, 152, 435, 232, 456, 308, 351, 350, 283, 393, 205, 371, 140, 367, 84, 347, 78, 313, 39, 235)
+polygon = PackedVector2Array(160, 70, 218, 54, 280, 18, 321, 12, 360, 24, 423, 33, 452, 86, 428, 179, 355, 227, 318, 311, 198, 360, 211, 257, 151, 199, 97, 183, 35, 178, 79, 103)
 
 [node name="Item" parent="." instance=ExtResource("2_cvoxu")]
 visible = false
