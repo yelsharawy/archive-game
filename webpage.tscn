@@ -1,0 +1,362 @@
+[gd_scene load_steps=18 format=3 uid="uid://ccow3mji3iwrp"]
+
+[ext_resource type="Script" path="res://fit_vertical.gd" id="1_1pkne"]
+[ext_resource type="Script" path="res://game_origin.gd" id="2_3t5wu"]
+[ext_resource type="PackedScene" uid="uid://f73veduoei1s" path="res://game/title.tscn" id="3_nvwq5"]
+[ext_resource type="Script" path="res://comment_list.gd" id="4_2uxj4"]
+[ext_resource type="Script" path="res://Comment.gd" id="5_m7s46"]
+[ext_resource type="Script" path="res://post_comment.gd" id="6_gsp5q"]
+
+[sub_resource type="SystemFont" id="SystemFont_i0e0i"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_pr1jl"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="Resource" id="Resource_wcwxh"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 0
+content = "[color=red]this game suchs LMAO how old r u 5?[/color]"
+username = "xX_demonslayeroverlord_Xx79"
+
+[sub_resource type="Resource" id="Resource_xmtck"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 1
+content = "[color=darkgreen]this game actually looks pretty good compared to other stuff on this site lol, where's ur game hater?[/color]"
+username = "newbdefender10"
+
+[sub_resource type="Resource" id="Resource_uqoyl"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 2
+content = "[color=red]ROFL it's just a black screen how dumb can u b?[/color]"
+username = "xX_demonslayeroverlord_Xx79"
+
+[sub_resource type="Resource" id="Resource_x51n4"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 3
+content = "[color=purple]u need to turn on JavaScript look it up[/color]"
+username = "netexpert1975"
+
+[sub_resource type="Resource" id="Resource_r4ptt"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 0
+content = "OMG anyone can post a comment?? O_O"
+username = "kittylover5912"
+
+[sub_resource type="Resource" id="Resource_1lgfh"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 1
+content = "[color=purple]that's pretty standard nowadays[/color]"
+username = "netexpert1975"
+
+[sub_resource type="Resource" id="Resource_dj712"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 2
+content = ":OO how do u do colors like that?!? (●◡●)"
+username = "kittylover5912"
+
+[sub_resource type="Resource" id="Resource_d5bhd"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 3
+content = "[color=purple]BBCodes look it up. go to forums for help, not here[/color]"
+username = "netexpert1975"
+
+[sub_resource type="Resource" id="Resource_g461o"]
+resource_name = "New Comment"
+script = ExtResource("5_m7s46")
+depth = 4
+content = "waa it's too confusing ＞︿＜ thanks tho!! \\(￣︶￣*\\))"
+username = "kittylover5912"
+
+[node name="VBoxContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Header" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.682353, 1)
+
+[node name="Label" type="RichTextLabel" parent="Header"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 13.0
+offset_right = 230.0
+offset_bottom = 51.0
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+theme_override_fonts/normal_font = SubResource("SystemFont_i0e0i")
+theme_override_fonts/bold_font = SubResource("SystemFont_pr1jl")
+bbcode_enabled = true
+text = "[color=darkblue][font_size=\"30px\"]ArchiveGames.net[/font_size]"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="Label2" type="RichTextLabel" parent="Header"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -205.0
+offset_bottom = 15.0
+grow_horizontal = 0
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[right]Welcome, [b]the_player_42[/b]! [color=blue][url]Not you?[/url][/color][/right]"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="EvilSizeChangingControl" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 866)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_1pkne")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EvilSizeChangingControl"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_right = 450.0
+offset_bottom = 861.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="EvilSizeChangingControl/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="LeftColumn" type="VBoxContainer" parent="EvilSizeChangingControl/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Game Section" type="Control" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EmbeddedGame" type="ColorRect" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn/Game Section"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -200.0
+offset_right = 275.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GameOrigin" type="Control" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn/Game Section/EmbeddedGame"]
+layout_mode = 1
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("2_3t5wu")
+
+[node name="Title" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn/Game Section/EmbeddedGame/GameOrigin" instance=ExtResource("3_nvwq5")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 550.0
+offset_bottom = 400.0
+mouse_filter = 1
+
+[node name="Label" type="RichTextLabel" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[b]*If you only see a black screen, please [color=blue][url]follow this guide[/url][/color] to enable JavaScript in your browser."
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="HSeparator" type="HSeparator" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CommentsTitle" type="RichTextLabel" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[b][font_size=\"30px\"]Comments[/font_size][/b]"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="HSeparator2" type="HSeparator" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CommentList" type="VBoxContainer" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+layout_mode = 2
+script = ExtResource("4_2uxj4")
+comments = Array[ExtResource("5_m7s46")]([SubResource("Resource_wcwxh"), SubResource("Resource_xmtck"), SubResource("Resource_uqoyl"), SubResource("Resource_x51n4"), SubResource("Resource_r4ptt"), SubResource("Resource_1lgfh"), SubResource("Resource_dj712"), SubResource("Resource_d5bhd"), SubResource("Resource_g461o")])
+
+[node name="PostComment" type="Panel" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TextEdit" type="TextEdit" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn/PostComment"]
+layout_mode = 2
+offset_right = 170.0
+offset_bottom = 35.0
+mouse_filter = 1
+placeholder_text = "Start typing here..."
+wrap_mode = 1
+caret_blink = true
+caret_multiple = false
+
+[node name="Button" type="Button" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn/PostComment" node_paths=PackedStringArray("text_edit")]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 58.0
+offset_bottom = 60.0
+tooltip_text = "Type here with BBCode"
+mouse_filter = 1
+text = "  Submit  "
+script = ExtResource("6_gsp5q")
+text_edit = NodePath("../TextEdit")
+
+[node name="VSeparator" type="VSeparator" parent="EvilSizeChangingControl/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="RightColumn" type="VBoxContainer" parent="EvilSizeChangingControl/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Label" type="RichTextLabel" parent="EvilSizeChangingControl/HBoxContainer/RightColumn"]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[b][font_size=\"30px\"]Potion Cellar[/font_size][/b]
+[p][b]Creator:[/b] [color=blue][url]user23374749598[/url][/color][/p]
+[p][b]Decription:[/b]
+Hope you like my first game! I had a friend help with the art but I made everything else myself![/p]
+[p][b]Rating:[/b] [color=gold]★★[/color]☆☆☆[/p]
+[p][b]Plays:[/b] 8
+"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="HSeparator3" type="HSeparator" parent="EvilSizeChangingControl/HBoxContainer/RightColumn"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label2" type="RichTextLabel" parent="EvilSizeChangingControl/HBoxContainer/RightColumn"]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[b][font_size=\"18px\"]About the Creator[/font_size][/b]
+[p]I love games! I always wanted to make something others could enjoy, and puzzles are my favorite kind of game, so I'm trying really hard to learn to code. The things I make might break, but I'm only a DM away from helping you out![/p]
+[b]Last Online:[/b] 12 years ago
+"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="HSeparator4" type="HSeparator" parent="EvilSizeChangingControl/HBoxContainer/RightColumn"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VSeparator2" type="VSeparator" parent="EvilSizeChangingControl/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="HSeparator4" type="HSeparator" parent="."]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Footer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Footer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.682353, 1)
+
+[node name="Label" type="RichTextLabel" parent="Footer"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 240.0
+offset_bottom = 42.0
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "© ArchiveGames.net - 2012
+[color=blue][url]Support us![/url][/color] - [color=blue][url]Upload a game![/url][/color] - [color=blue][url]Work for us![/url][/color]"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[connection signal="minimum_size_changed" from="EvilSizeChangingControl/HBoxContainer" to="EvilSizeChangingControl" method="update_min_size"]
+[connection signal="pressed" from="EvilSizeChangingControl/HBoxContainer/LeftColumn/PostComment/Button" to="EvilSizeChangingControl/HBoxContainer/LeftColumn/PostComment/Button" method="post_comment"]

@@ -1,5 +1,9 @@
+@tool
 extends Control
 
+@export var update: bool:
+	set(value):
+		update_min_size()
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
