@@ -58,6 +58,7 @@ func switch_scene(new_scene: PackedScene) -> void:
 		else:
 			# running game solo, "game_root" is just scene root
 			get_tree().root.add_child(_current_scene)
+	_current_scene.get_parent().move_child(_current_scene, _current_scene.get_parent().get_child_count())
 	scene_switched.emit()
 
 func _reparent_autoload(autoload: Node) -> void:

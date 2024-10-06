@@ -27,6 +27,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "b80ada95d7833a497fdadff594bd6ab2"
 
 [node name="Event" parent="." instance=ExtResource("2_7fwcq")]
+event_name = &"vent_opened"
 
 [node name="VentCoverTransform" type="Node2D" parent="."]
 position = Vector2(75, 339)

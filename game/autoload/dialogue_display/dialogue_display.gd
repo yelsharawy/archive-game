@@ -6,6 +6,7 @@ extends Control
 @export var npc_font_settings: LabelSettings
 
 func _ready() -> void:
+	SceneStack.register_game_autoload(self)
 	label.text = ""
 	reset_timer.one_shot = true
 	reset_timer.timeout.connect(clear_display)
