@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccow3mji3iwrp"]
+[gd_scene load_steps=19 format=3 uid="uid://ccow3mji3iwrp"]
 
 [ext_resource type="Script" path="res://fit_vertical.gd" id="1_1pkne"]
 [ext_resource type="Script" path="res://game_origin.gd" id="2_3t5wu"]
 [ext_resource type="PackedScene" uid="uid://f73veduoei1s" path="res://game/title.tscn" id="3_nvwq5"]
 [ext_resource type="Script" path="res://comment_list.gd" id="4_2uxj4"]
 [ext_resource type="Script" path="res://Comment.gd" id="5_m7s46"]
+[ext_resource type="AudioStream" uid="uid://bgtdcpp3mbj6g" path="res://assets/website_sounds/notification.mp3" id="6_f8dgb"]
 [ext_resource type="Script" path="res://post_comment.gd" id="6_gsp5q"]
 
 [sub_resource type="SystemFont" id="SystemFont_i0e0i"]
@@ -232,7 +233,7 @@ focus_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 1
 bbcode_enabled = true
-text = "[b][font_size=\"30px\"]Comments[/font_size][/b]"
+text = "[b][font_size=\"30px\"]Comments[/font_size][/b] (9)"
 fit_content = true
 scroll_active = false
 selection_enabled = true
@@ -245,6 +246,9 @@ mouse_filter = 1
 layout_mode = 2
 script = ExtResource("4_2uxj4")
 comments = Array[ExtResource("5_m7s46")]([SubResource("Resource_wcwxh"), SubResource("Resource_xmtck"), SubResource("Resource_uqoyl"), SubResource("Resource_x51n4"), SubResource("Resource_r4ptt"), SubResource("Resource_1lgfh"), SubResource("Resource_dj712"), SubResource("Resource_d5bhd"), SubResource("Resource_g461o")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
+stream = ExtResource("6_f8dgb")
 
 [node name="PostComment" type="Panel" parent="EvilSizeChangingControl/HBoxContainer/LeftColumn"]
 custom_minimum_size = Vector2(0, 75)
@@ -359,4 +363,5 @@ scroll_active = false
 selection_enabled = true
 
 [connection signal="minimum_size_changed" from="EvilSizeChangingControl/HBoxContainer" to="EvilSizeChangingControl" method="update_min_size"]
+[connection signal="comment_added" from="EvilSizeChangingControl/HBoxContainer/LeftColumn/CommentList" to="EvilSizeChangingControl/HBoxContainer/LeftColumn/AudioStreamPlayer" method="play" binds= [0.0]]
 [connection signal="pressed" from="EvilSizeChangingControl/HBoxContainer/LeftColumn/PostComment/Button" to="EvilSizeChangingControl/HBoxContainer/LeftColumn/PostComment/Button" method="post_comment"]

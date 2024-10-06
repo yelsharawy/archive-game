@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bo0djupf1ko3b"]
+[gd_scene load_steps=35 format=3 uid="uid://bo0djupf1ko3b"]
 
 [ext_resource type="Theme" uid="uid://krldv7tjslsa" path="res://browser.theme" id="1_30lqj"]
 [ext_resource type="Texture2D" uid="uid://dr4p6re2wh2u2" path="res://window_area.png" id="2_6ul27"]
@@ -94,6 +94,14 @@ region = Rect2(75, 323, 21, 21)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8vps"]
 texture = SubResource("AtlasTexture_v446a")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vm3n2"]
+bg_color = Color(0.901961, 0.917647, 0.847059, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.545098, 0.580392, 0.584314, 1)
 
 [node name="Window" type="Control"]
 layout_mode = 3
@@ -268,9 +276,9 @@ patch_margin_right = 38
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 25.0
+offset_left = 7.0
 offset_top = 2.0
-offset_right = 148.0
+offset_right = 130.0
 grow_vertical = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -370,7 +378,7 @@ anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 9.0
 offset_right = -5.0
-offset_bottom = -5.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -384,6 +392,28 @@ metadata/_tab_index = 0
 
 [node name="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames" instance=ExtResource("7_etejk")]
 layout_mode = 2
+
+[node name="Panel" type="Panel" parent="WindowContent"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -21.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vm3n2")
+
+[node name="Label" type="Label" parent="WindowContent/Panel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 60.0
+offset_bottom = 16.0
+text = "Done"
 
 [connection signal="gui_input" from="RightHandle" to="RightHandle" method="_on_gui_input"]
 [connection signal="gui_input" from="BottomHandle" to="BottomHandle" method="_on_gui_input"]

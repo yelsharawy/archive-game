@@ -1,6 +1,13 @@
 @tool
 extends VBoxContainer
 
+var title_label: RichTextLabel:
+	get:
+		var parent = get_parent()
+		if parent:
+			return parent.find_child("CommentsTitle", false)
+		else:
+			return null
 @export var comments: Array[Comment]:
 	set(value):
 		comments.resize(value.size())
@@ -11,6 +18,9 @@ extends VBoxContainer
 				comments[i].resource_name = "New Comment"
 				comments[i].changed.connect(generate_children)
 		generate_children()
+
+signal comment_added
+var since_last_add: float = -INF
 
 var default_comment_scene: PackedScene = load("res://default_comment.tscn")
 
@@ -26,6 +36,15 @@ func add_new(comment: Comment) -> void:
 	comments.append(comment)
 	comment.changed.connect(generate_children)
 	generate_children()
+	comment_added.emit()
+	since_last_add = 0
+
+func format_label() -> void:
+	if since_last_add <= 6:
+		var result = '[b][font_size="30px"]Comments[/font_size][/b] (%d)' % comments.size()
+		if fmod(since_last_add, 1.0) < 0.5:
+			result = '[bgcolor="yellow"]' + result
+		title_label.text = result
 
 func generate_children() -> void:
 	for n in self.get_children():
@@ -49,5 +68,10 @@ func generate_children() -> void:
 		self.add_child(node)
 		#add_child(node,false,Node.INTERNAL_MODE_FRONT)
 
+
 func _ready() -> void:
 	Comments.posted.connect(add_new)
+
+func _process(delta: float) -> void:
+	since_last_add += delta
+	format_label()

@@ -4,5 +4,6 @@ extends Button
 
 func post_comment() -> void:
 	var text = text_edit.text
-	Comments.post(Comments.create(0,text,"the_player_42"))
-	text_edit.clear()
+	if text:
+		Comments.post(Comments.create(0,text,"the_player_42"))
+		text_edit.clear()
