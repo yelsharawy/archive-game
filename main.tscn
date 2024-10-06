@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bo0djupf1ko3b"]
+[gd_scene load_steps=34 format=3 uid="uid://bo0djupf1ko3b"]
 
 [ext_resource type="Theme" uid="uid://krldv7tjslsa" path="res://browser.theme" id="1_30lqj"]
 [ext_resource type="Texture2D" uid="uid://dr4p6re2wh2u2" path="res://window_area.png" id="2_6ul27"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dw0y5xgc8kk51" path="res://windows_reference.png" id="5_lctp4"]
 [ext_resource type="Script" path="res://game_origin.gd" id="6_gwa5v"]
 [ext_resource type="PackedScene" uid="uid://f73veduoei1s" path="res://game/title.tscn" id="6_hpoad"]
-[ext_resource type="PackedScene" uid="uid://cvrnyp41shoaa" path="res://game/level_select.tscn" id="8_dhe84"]
 
 [sub_resource type="SystemFont" id="SystemFont_uak8e"]
 font_names = PackedStringArray("Trebuchet MS")
@@ -103,6 +102,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_30lqj")
 
 [node name="Visual" type="NinePatchRect" parent="."]
@@ -113,6 +113,7 @@ anchor_bottom = 1.0
 offset_top = 29.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 texture = ExtResource("2_6ul27")
 patch_margin_left = 5
 patch_margin_right = 5
@@ -127,6 +128,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 29.0
 grow_horizontal = 2
+mouse_filter = 1
 script = ExtResource("2_gn064")
 
 [node name="Visual" type="NinePatchRect" parent="TitleBar"]
@@ -136,6 +138,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 29.0
 grow_horizontal = 2
+mouse_filter = 1
 texture = ExtResource("3_7gjgm")
 region_rect = Rect2(0, 0, 66, 29)
 patch_margin_left = 28
@@ -149,6 +152,7 @@ offset_left = 25.0
 offset_top = 2.0
 offset_right = 148.0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_uak8e")
@@ -169,6 +173,7 @@ offset_right = -51.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cnhpl")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ietwk")
@@ -187,6 +192,7 @@ offset_right = -28.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
 theme_override_styles/hover = SubResource("StyleBoxTexture_8a8pl")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ie4sf")
@@ -205,6 +211,7 @@ offset_right = -5.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fyayh")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g27eq")
@@ -221,6 +228,7 @@ offset_right = -4.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="TabContainer" type="TabContainer" parent="WindowContent"]
 layout_mode = 1
@@ -250,17 +258,20 @@ size_flags_vertical = 3
 [node name="Header" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Header"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 15.0
+mouse_filter = 1
 theme_override_font_sizes/font_size = 32
 text = "  ArchiveGames.net"
 
 [node name="Game Section" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="EmbeddedGame" type="ColorRect" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Game Section"]
 clip_contents = true
@@ -276,11 +287,13 @@ offset_right = 275.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
 [node name="GameOrigin" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Game Section/EmbeddedGame"]
 layout_mode = 1
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("6_gwa5v")
 
 [node name="Title" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Game Section/EmbeddedGame/GameOrigin" instance=ExtResource("6_hpoad")]
@@ -292,15 +305,16 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_right = 550.0
 offset_bottom = 400.0
-level_select = ExtResource("8_dhe84")
 
 [node name="Comments" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Comments"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 15.0
+mouse_filter = 1
 theme_override_font_sizes/font_size = 32
 text = " Comments"
 
@@ -314,6 +328,7 @@ offset_left = -3.0
 offset_top = 32.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 10
 
 [connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_gui_input"]
