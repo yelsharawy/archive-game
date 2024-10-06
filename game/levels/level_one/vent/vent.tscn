@@ -1,0 +1,307 @@
+[gd_scene load_steps=25 format=3 uid="uid://dgs4h2algmd5r"]
+
+[ext_resource type="Texture2D" uid="uid://csubcyil28ij1" path="res://assets/programmer/level_one/vent.png" id="1_c88om"]
+[ext_resource type="Script" path="res://game/levels/level_one/vent/safe.gd" id="2_51qh4"]
+[ext_resource type="Texture2D" uid="uid://b0t0ttcxy3g47" path="res://assets/programmer/level_one/safe_open.png" id="2_fwao6"]
+[ext_resource type="Script" path="res://game/levels/level_one/vent/vent.gd" id="2_o3y3o"]
+[ext_resource type="Texture2D" uid="uid://i2h5dd1c4g3y" path="res://assets/programmer/level_one/vent-cover.png" id="2_scowt"]
+[ext_resource type="PackedScene" uid="uid://ckw2nto1uh77q" path="res://game/components/event/event.tscn" id="3_a570g"]
+[ext_resource type="PackedScene" uid="uid://b1orwamk73h8" path="res://game/components/item/item.tscn" id="3_aaryb"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="3_mcdii"]
+[ext_resource type="Texture2D" uid="uid://b6qhsrvg7ta8n" path="res://assets/programmer/level_one/anvil.png" id="5_6686p"]
+[ext_resource type="Texture2D" uid="uid://c1hnxfmh4onf3" path="res://assets/programmer/level_one/safe_closed.png" id="5_oljlr"]
+[ext_resource type="Script" path="res://game/levels/level_one/vent/safe_door.gd" id="6_gsq0p"]
+[ext_resource type="Script" path="res://game/components/interactable/responses.gd" id="6_pa6md"]
+[ext_resource type="FontFile" uid="uid://cuwfk3sl3s7jr" path="res://assets/fonts/segment_7_standard/Segment7Standard.otf" id="7_sk3p0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yt26"]
+size = Vector2(116, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe2qq"]
+size = Vector2(307, 251)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkjg5"]
+size = Vector2(239, 113)
+
+[sub_resource type="Resource" id="Resource_bj1js"]
+script = ExtResource("6_pa6md")
+missing_required_responses = ["It's too heavy to move, there must be something inside."]
+wrong_item_responses = ["That won't work here..."]
+special_item_responses = {
+"example_item": {
+"npc_name": "ghost",
+"remark": "What?"
+},
+"example_item_two": "I don't know about using that here..."
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0a1g"]
+size = Vector2(170, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mithh"]
+size = Vector2(156, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfkr7"]
+size = Vector2(29.5, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ork5"]
+size = Vector2(29.5, 25)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b7qn7"]
+font = ExtResource("7_sk3p0")
+font_size = 40
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjp2x"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm6rq"]
+size = Vector2(98, 24)
+
+[node name="Vent" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_c88om")
+centered = false
+
+[node name="WinGameInteractable" parent="." instance=ExtResource("3_mcdii")]
+position = Vector2(270, 188)
+_required_event = &"vent_cleared"
+
+[node name="Area2D" type="Area2D" parent="WinGameInteractable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinGameInteractable/Area2D"]
+position = Vector2(5, -2.5)
+shape = SubResource("RectangleShape2D_6yt26")
+
+[node name="Safe" type="Node2D" parent="."]
+visible = false
+script = ExtResource("2_51qh4")
+
+[node name="VentClearEvent" parent="Safe" instance=ExtResource("3_a570g")]
+event_name = &"vent_cleared"
+
+[node name="AnvilEvent" parent="Safe" instance=ExtResource("3_a570g")]
+event_name = &"anvil_picked_up"
+
+[node name="SafeOpenItem" parent="Safe" instance=ExtResource("3_aaryb")]
+position = Vector2(264, 194)
+id = &"safe"
+
+[node name="SafeOpen" type="Sprite2D" parent="Safe/SafeOpenItem"]
+texture_filter = 1
+position = Vector2(-19.5, -13.5)
+texture = ExtResource("2_fwao6")
+
+[node name="Interactable" parent="Safe/SafeOpenItem" instance=ExtResource("3_mcdii")]
+position = Vector2(1.5, 0.5)
+_required_event = &"anvil_picked_up"
+
+[node name="Area2D" type="Area2D" parent="Safe/SafeOpenItem/Interactable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Safe/SafeOpenItem/Interactable/Area2D"]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_pe2qq")
+
+[node name="AnvilItem" parent="Safe" instance=ExtResource("3_aaryb")]
+position = Vector2(265, 229)
+id = &"anvil"
+
+[node name="Interactable" parent="Safe/AnvilItem" instance=ExtResource("3_mcdii")]
+_required_event = &"safe_unlocked"
+
+[node name="Area2D" type="Area2D" parent="Safe/AnvilItem/Interactable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Safe/AnvilItem/Interactable/Area2D"]
+position = Vector2(-3.5, 6.5)
+shape = SubResource("RectangleShape2D_qkjg5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Safe/AnvilItem"]
+texture_filter = 1
+texture = ExtResource("5_6686p")
+
+[node name="SafeDoor" type="Node2D" parent="."]
+position = Vector2(131, 80)
+script = ExtResource("6_gsq0p")
+
+[node name="Event" parent="SafeDoor" instance=ExtResource("3_a570g")]
+event_name = &"safe_unlocked"
+
+[node name="SafeDoorSprite" type="Sprite2D" parent="SafeDoor"]
+texture_filter = 1
+position = Vector2(-73, -49)
+texture = ExtResource("5_oljlr")
+centered = false
+
+[node name="Interactable" parent="SafeDoor/SafeDoorSprite" instance=ExtResource("3_mcdii")]
+position = Vector2(73, 49)
+_required_item = &"IMPOSSIBLE"
+_required_event = &"opened_vent"
+responses = SubResource("Resource_bj1js")
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/SafeDoorSprite/Interactable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/SafeDoorSprite/Interactable/Area2D"]
+position = Vector2(59, 120)
+shape = SubResource("RectangleShape2D_o0a1g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SafeDoor/SafeDoorSprite/Interactable/Area2D"]
+position = Vector2(222, 43)
+shape = SubResource("RectangleShape2D_mithh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SafeDoor/SafeDoorSprite/Interactable/Area2D"]
+position = Vector2(286.25, 152)
+shape = SubResource("RectangleShape2D_cfkr7")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="SafeDoor/SafeDoorSprite/Interactable/Area2D"]
+position = Vector2(160, 233.5)
+shape = SubResource("RectangleShape2D_5ork5")
+
+[node name="Label" type="Label" parent="SafeDoor"]
+texture_filter = 1
+offset_left = 119.0
+offset_top = 47.0
+offset_right = 253.0
+offset_bottom = 87.0
+label_settings = SubResource("LabelSettings_b7qn7")
+horizontal_alignment = 2
+
+[node name="Interactable1" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(166, 114)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable1/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable2" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(207, 114)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable2/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable3" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(247, 114)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable3/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable4" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(166, 154)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable4/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable5" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(206, 155)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable5/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable6" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(246, 154)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable6/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable7" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(165, 197)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable7/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable8" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(206, 196)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable8/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="Interactable9" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(248, 196)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/Interactable9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/Interactable9/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_cjp2x")
+
+[node name="InteractableClear" parent="SafeDoor" instance=ExtResource("3_mcdii")]
+z_index = 1
+position = Vector2(197, 240)
+_required_event = &"opened_vent"
+
+[node name="Area2D" type="Area2D" parent="SafeDoor/InteractableClear"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeDoor/InteractableClear/Area2D"]
+position = Vector2(31, -8)
+shape = SubResource("RectangleShape2D_dm6rq")
+
+[node name="VentTransform" type="Sprite2D" parent="."]
+position = Vector2(85, 349)
+script = ExtResource("2_o3y3o")
+
+[node name="VentEvent" parent="VentTransform" instance=ExtResource("3_a570g")]
+event_name = &"opened_vent"
+
+[node name="Sprite2D" type="Sprite2D" parent="VentTransform"]
+texture_filter = 1
+position = Vector2(-85, -337)
+texture = ExtResource("2_scowt")
+centered = false
+
+[node name="Interactable" parent="VentTransform" instance=ExtResource("3_mcdii")]
+position = Vector2(-86, -349)
+one_time_use = true
+_required_item = &"screwdriver"
+
+[node name="Area2D" type="Area2D" parent="VentTransform/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentTransform/Interactable/Area2D"]
+polygon = PackedVector2Array(76, 32, 489, 33, 487, 369, 61, 370)
+
+[connection signal="clicked" from="Safe/SafeOpenItem/Interactable" to="Safe/VentClearEvent" method="happen"]
+[connection signal="clicked" from="Safe/AnvilItem/Interactable" to="Safe/AnvilEvent" method="happen"]
+[connection signal="correct_pin_entered" from="SafeDoor" to="SafeDoor/Event" method="happen"]
+[connection signal="correct_pin_entered" from="SafeDoor" to="Safe" method="safedoor_opened"]
+[connection signal="clicked" from="VentTransform/Interactable" to="VentTransform" method="interacted"]
+[connection signal="clicked" from="VentTransform/Interactable" to="VentTransform/VentEvent" method="happen"]

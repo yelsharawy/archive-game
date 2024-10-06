@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0xe10kyf0ir2"]
+[gd_scene load_steps=14 format=3 uid="uid://b0xe10kyf0ir2"]
 
+[ext_resource type="PackedScene" uid="uid://b1orwamk73h8" path="res://game/components/item/item.tscn" id="1_ca4dw"]
 [ext_resource type="Texture2D" uid="uid://ci4fkx0b33ico" path="res://assets/programmer/level_one/room.png" id="1_fc13k"]
+[ext_resource type="Texture2D" uid="uid://52mofjve5fye" path="res://assets/programmer/level_one/screwdriver.png" id="2_j27p1"]
 [ext_resource type="PackedScene" uid="uid://bvwatuyc7tin4" path="res://game/components/scene_portal/scene_portal.tscn" id="2_olhgj"]
+[ext_resource type="PackedScene" uid="uid://dgs4h2algmd5r" path="res://game/levels/level_one/vent/vent.tscn" id="3_6njl6"]
 [ext_resource type="PackedScene" uid="uid://hemvmpx3qtyc" path="res://game/levels/level_one/ghost/ghost.tscn" id="3_kx3ey"]
 [ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="3_yg1d3"]
 [ext_resource type="PackedScene" uid="uid://ekkah3patoyn" path="res://game/levels/level_one/door/door.tscn" id="5_x4t3r"]
@@ -17,6 +20,17 @@
 texture_filter = 1
 texture = ExtResource("1_fc13k")
 centered = false
+
+[node name="VentScene" parent="." instance=ExtResource("2_olhgj")]
+scene = ExtResource("3_6njl6")
+
+[node name="Interactable" parent="VentScene" instance=ExtResource("3_yg1d3")]
+_required_event = &"moved_shelf"
+
+[node name="Area2D" type="Area2D" parent="VentScene/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentScene/Interactable/Area2D"]
+polygon = PackedVector2Array(393, 69, 458, 48, 457, 127, 399, 136)
 
 [node name="GhostScene" parent="." instance=ExtResource("2_olhgj")]
 scene = ExtResource("3_kx3ey")
@@ -47,6 +61,22 @@ scene = ExtResource("6_g5mlk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpiderScene/Interactable/Area2D"]
 polygon = PackedVector2Array(65, 106, 59, 151, 93, 180, 126, 164, 133, 113, 117, 80, 85, 79)
+
+[node name="Screwdriver" parent="." instance=ExtResource("1_ca4dw")]
+position = Vector2(389, 327)
+id = &"screwdriver"
+
+[node name="Sprite2D" type="Sprite2D" parent="Screwdriver"]
+texture_filter = 1
+texture = ExtResource("2_j27p1")
+
+[node name="Interactable" parent="Screwdriver" instance=ExtResource("3_yg1d3")]
+_required_event = &"moved_shelf"
+
+[node name="Area2D" type="Area2D" parent="Screwdriver/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Screwdriver/Interactable/Area2D"]
+polygon = PackedVector2Array(-20, 8, -30, -23, 2, -43, 23, -10, 27, 19, 16, 39, -6, 24)
 
 [node name="Shelf" type="Sprite2D" parent="."]
 texture_filter = 1
