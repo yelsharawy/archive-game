@@ -13,7 +13,3 @@ func _ready() -> void:
 	quit_button.pressed.connect(func() -> void:
 		get_tree().quit()
 	)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

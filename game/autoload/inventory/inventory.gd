@@ -1,6 +1,6 @@
 extends Node
 
-const TIME_TO_INVENTORY_TWEEN: float = 1
+const TIME_TO_INVENTORY_TWEEN: float = 0.1
 
 @export var _virtual_position_top: Node2D
 @export var _virtual_position_bottom: Node2D
@@ -55,7 +55,7 @@ func pick_up(item: Item) -> void:
 
 	# store reference to the item for easy lookup in places like place_down
 	_items[item.id] = item
-	_item_click_area_z_index[item.id] = item.interactable.click_area.z_index
+	_item_click_area_z_index[item.id] = item.z_index
 	# resolving virtual position after storing z index, since this function
 	# will modify the z index
 	_resolve_virtual_positions()
@@ -68,7 +68,7 @@ func place_down(target: Node) -> void:
 	var id = _active_item.id
 	_active_item._place_in_world(target, true)
 	_active_item.interactable.clicked.disconnect(_item_inventory_events[_active_item.id])
-	_active_item.interactable.click_area.z_index = _item_click_area_z_index[_active_item.id]
+	_active_item.z_index = _item_click_area_z_index[_active_item.id]
 	_item_inventory_events.erase(_active_item.id)
 	_items.erase(_active_item.id)
 	_item_click_area_z_index.erase(_active_item.id)
@@ -79,9 +79,16 @@ func place_down(target: Node) -> void:
 
 ## Check if an item is currently being held (appearing under the cursor)
 func is_item_active(item: StringName) -> bool:
-	return item.is_empty() or item == _active_item.id
+	if item.is_empty():
+		# requires no active item
+		return _active_item == null
+	if not _active_item:
+		return false
+	return item == _active_item.id
 
 func release_active_item() -> void:
+	if not is_instance_valid(_active_item):
+		return
 	_active_item.interactable.visible = true
 	_active_item.get_parent().reparent(_virtual_position_top, true)
 	_active_item = null
@@ -104,7 +111,7 @@ func _resolve_virtual_positions() -> void:
 		child.position.x = 0
 		child.position.y = idx * spacing
 		assert(item, "_resolve_virtual_positions expects virtual positions to have one child: an item")
-		item.interactable.click_area.z_index = _bottomost_clickable.z_index + idx + 1
+		item.z_index = _bottomost_clickable.z_index + idx + 1
 		item.global_position = item_original_position
 		_tween_item_to_zero(item)
 
@@ -118,6 +125,8 @@ func _tween_item_to_zero(item: Item) -> void:
 	tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 
 func _input(event: InputEvent) -> void:
+	if _active_item and event.is_action_pressed(&"mouse_click_primary"):
+		release_active_item.call_deferred()
 	if _active_item and event is InputEventMouseMotion:
 		# move item without tweening when tracking the cursor
 		_active_item.get_parent().global_position = event.global_position

@@ -1,5 +1,7 @@
 extends Node
 
+signal scene_switched()
+
 var _stack: Array[PackedScene]
 
 @onready var texture_button: TextureButton = $TextureButton
@@ -16,6 +18,7 @@ var game_root: Node:
 
 var _current_scene: Node = null
 
+var _known_scenes: Dictionary
 var _autoloads: Array[Node]
 
 ## Register an autoload that should be reparented to the game's virtual root node
@@ -27,14 +30,35 @@ func register_game_autoload(autoload: Node) -> void:
 	_reparent_autoload.call_deferred(autoload)
 
 func switch_scene(new_scene: PackedScene) -> void:
-	if game_root:
-		if _current_scene:
-			game_root.remove_child(_current_scene)
-		_current_scene = new_scene.instantiate()
-		game_root.add_child(_current_scene)
-	else:
-		get_tree().change_scene_to_packed(new_scene)
+	if _current_scene:
+		# pause the current scene
+		_current_scene.process_mode = Node.PROCESS_MODE_DISABLED
+		# make current scene invisble
+		if _current_scene is Node2D:
+			_current_scene.visible = false
+		elif _current_scene is Control:
+			_current_scene.visible = false
 
+	if _known_scenes.has(new_scene):
+		var cached_scene: Node = _known_scenes[new_scene]
+
+		cached_scene.process_mode = Node.PROCESS_MODE_INHERIT
+		if cached_scene is Node2D:
+			cached_scene.visible = true
+		elif cached_scene is Control:
+			cached_scene.visible = true
+
+		_current_scene = cached_scene
+	else:
+		_current_scene = new_scene.instantiate()
+		# cache the created node version of the scene for later
+		_known_scenes[new_scene] = _current_scene
+		if game_root:
+			game_root.add_child(_current_scene)
+		else:
+			# running game solo, "game_root" is just scene root
+			get_tree().root.add_child(_current_scene)
+	scene_switched.emit()
 
 func _reparent_autoload(autoload: Node) -> void:
 	if not autoload.get_parent():
@@ -44,12 +68,7 @@ func _reparent_autoload(autoload: Node) -> void:
 
 func _ready() -> void:
 	texture_button.pressed.connect(func() -> void:
-		if _stack.is_empty():
-			return
-		_stack.pop_back()
-		
-		switch_scene(_stack.back())
-		
+		pop()
 		if _stack.size() <= 1:
 			texture_button.visible = false
 		)
@@ -65,16 +84,12 @@ func push(new: PackedScene) -> void:
 		Inventory.set_visible(true)
 	elif _stack.size() >= 1:
 		texture_button.visible = true
+
 	_stack.append(new)
-	
 	switch_scene(new)
 
-func is_root() -> bool:
-	return _stack.is_empty()
-
 func pop() -> void:
+	assert(_current_scene == _known_scenes[_stack.back()])
 	_stack.pop_back()
-	if is_root():
-		return
-	
+	assert(not _stack.is_empty())
 	switch_scene(_stack.back())
