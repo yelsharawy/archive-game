@@ -167,6 +167,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_30lqj")
 
 [node name="Visual" type="NinePatchRect" parent="."]
@@ -177,6 +178,7 @@ anchor_bottom = 1.0
 offset_top = 29.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 texture = ExtResource("2_6ul27")
 patch_margin_left = 5
 patch_margin_right = 5
@@ -191,6 +193,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 29.0
 grow_horizontal = 2
+mouse_filter = 1
 script = ExtResource("2_gn064")
 
 [node name="Visual" type="NinePatchRect" parent="TitleBar"]
@@ -200,6 +203,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 29.0
 grow_horizontal = 2
+mouse_filter = 1
 texture = ExtResource("3_7gjgm")
 region_rect = Rect2(0, 0, 66, 29)
 patch_margin_left = 28
@@ -213,6 +217,7 @@ offset_left = 25.0
 offset_top = 2.0
 offset_right = 148.0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_uak8e")
@@ -233,6 +238,7 @@ offset_right = -51.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cnhpl")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ietwk")
@@ -251,6 +257,7 @@ offset_right = -28.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
 theme_override_styles/hover = SubResource("StyleBoxTexture_8a8pl")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ie4sf")
@@ -269,6 +276,7 @@ offset_right = -5.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2rvku")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fyayh")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g27eq")
@@ -285,6 +293,7 @@ offset_right = -4.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="TabContainer" type="TabContainer" parent="WindowContent"]
 layout_mode = 1
@@ -302,7 +311,7 @@ current_tab = 0
 [node name="ArchiveGames" type="ScrollContainer" parent="WindowContent/TabContainer"]
 layout_mode = 2
 follow_focus = true
-scroll_vertical = 376
+scroll_vertical = 100
 horizontal_scroll_mode = 0
 metadata/_tab_index = 0
 
@@ -314,12 +323,14 @@ size_flags_vertical = 3
 [node name="Header" type="Control" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Label" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/Header"]
 layout_mode = 0
 offset_right = 279.0
 offset_bottom = 36.0
 focus_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 1
 bbcode_enabled = true
 text = "[b][font_size=\"30px\"]ArchiveGames.net[/font_size][/b]"
@@ -329,6 +340,7 @@ selection_enabled = true
 
 [node name="HSeparator3" type="HSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer"]
 layout_mode = 2
@@ -343,6 +355,7 @@ size_flags_vertical = 3
 [node name="Game Section" type="Control" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="EmbeddedGame" type="ColorRect" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/Game Section"]
 clip_contents = true
@@ -358,11 +371,13 @@ offset_right = 275.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
 [node name="GameOrigin" type="Control" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/Game Section/EmbeddedGame"]
 layout_mode = 1
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("6_gwa5v")
 
 [node name="Title" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/Game Section/EmbeddedGame/GameOrigin" instance=ExtResource("6_hpoad")]
@@ -374,10 +389,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_right = 550.0
 offset_bottom = 400.0
+mouse_filter = 1
 
 [node name="Label" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 1
 bbcode_enabled = true
 text = "*If you only see a black screen, please [color=blue][url]follow this guide[/url][/color] to enable JavaScript in your browser."
@@ -387,10 +404,12 @@ selection_enabled = true
 
 [node name="HSeparator" type="HSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="CommentsTitle" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 1
 bbcode_enabled = true
 text = "[font_size=\"30px\"]Comments[/font_size]"
@@ -400,6 +419,7 @@ selection_enabled = true
 
 [node name="HSeparator2" type="HSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Comments" type="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -410,11 +430,13 @@ comments = Array[ExtResource("9_la6gd")]([SubResource("Resource_wcwxh"), SubReso
 visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="TextEdit" type="TextEdit" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/PostComment"]
 layout_mode = 2
 offset_right = 170.0
 offset_bottom = 35.0
+mouse_filter = 1
 placeholder_text = "Start typing here..."
 wrap_mode = 1
 caret_blink = true
@@ -426,16 +448,19 @@ offset_top = 39.0
 offset_right = 58.0
 offset_bottom = 60.0
 tooltip_text = "Type here with BBCode"
+mouse_filter = 1
 text = "  Submit  "
 
 [node name="PostComment2" type="Panel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="TextEdit" type="TextEdit" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/PostComment2"]
 layout_mode = 2
 offset_right = 170.0
 offset_bottom = 35.0
+mouse_filter = 1
 placeholder_text = "Start typing here..."
 wrap_mode = 1
 caret_blink = true
@@ -447,10 +472,12 @@ offset_top = 39.0
 offset_right = 58.0
 offset_bottom = 60.0
 tooltip_text = "Type here with BBCode"
+mouse_filter = 1
 text = "  Submit  "
 
 [node name="VSeparator" type="VSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -460,6 +487,7 @@ size_flags_stretch_ratio = 0.33
 [node name="Label" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 focus_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 1
 bbcode_enabled = true
 text = "[b][font_size=\"30px\"]Potion Cellar[/font_size][/b]
@@ -480,6 +508,7 @@ offset_left = -3.0
 offset_top = 32.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 10
 
 [connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_gui_input"]
