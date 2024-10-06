@@ -68,6 +68,8 @@ func _reparent_autoload(autoload: Node) -> void:
 		autoload.reparent(game_root, false)
 
 func _ready() -> void:
+	get_viewport().physics_object_picking_sort = true
+	get_viewport().physics_object_picking_first_only = true
 	texture_button.pressed.connect(func() -> void:
 		pop()
 		if _stack.size() <= 1:

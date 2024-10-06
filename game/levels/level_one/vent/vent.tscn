@@ -301,7 +301,7 @@ polygon = PackedVector2Array(76, 32, 489, 33, 487, 369, 61, 370)
 
 [connection signal="clicked" from="Safe/SafeOpenItem/Interactable" to="Safe/VentClearEvent" method="happen"]
 [connection signal="clicked" from="Safe/AnvilItem/Interactable" to="Safe/AnvilEvent" method="happen"]
-[connection signal="correct_pin_entered" from="SafeDoor" to="SafeDoor/Event" method="happen"]
 [connection signal="correct_pin_entered" from="SafeDoor" to="Safe" method="safedoor_opened"]
+[connection signal="correct_pin_entered" from="SafeDoor" to="SafeDoor/Event" method="happen"]
 [connection signal="clicked" from="VentTransform/Interactable" to="VentTransform" method="interacted"]
 [connection signal="clicked" from="VentTransform/Interactable" to="VentTransform/VentEvent" method="happen"]
