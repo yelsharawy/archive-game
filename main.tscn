@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bo0djupf1ko3b"]
+[gd_scene load_steps=45 format=3 uid="uid://bo0djupf1ko3b"]
 
 [ext_resource type="Theme" uid="uid://krldv7tjslsa" path="res://browser.theme" id="1_30lqj"]
 [ext_resource type="Texture2D" uid="uid://dr4p6re2wh2u2" path="res://window_area.png" id="2_6ul27"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dw0y5xgc8kk51" path="res://windows_reference.png" id="5_lctp4"]
 [ext_resource type="Script" path="res://game_origin.gd" id="6_gwa5v"]
 [ext_resource type="PackedScene" uid="uid://f73veduoei1s" path="res://game/title.tscn" id="6_hpoad"]
+[ext_resource type="Script" path="res://comments.gd" id="8_680kt"]
+[ext_resource type="Script" path="res://Comment.gd" id="9_la6gd"]
 
 [sub_resource type="SystemFont" id="SystemFont_uak8e"]
 font_names = PackedStringArray("Trebuchet MS")
@@ -94,6 +96,69 @@ region = Rect2(75, 323, 21, 21)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8vps"]
 texture = SubResource("AtlasTexture_v446a")
+
+[sub_resource type="Resource" id="Resource_wcwxh"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 0
+content = "[color=red]this game suchs LMAO how old r u 5?[/color]"
+username = "xX_demonslayeroverlord_Xx79"
+
+[sub_resource type="Resource" id="Resource_xmtck"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 1
+content = "[color=darkgreen]this game actually looks pretty good compared to other stuff on this site lol, where's ur game hater?[/color]"
+username = "newbdefender10"
+
+[sub_resource type="Resource" id="Resource_uqoyl"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 2
+content = "[color=red]ROFL it's just a black screen how dumb can u b?[/color]"
+username = "xX_demonslayeroverlord_Xx79"
+
+[sub_resource type="Resource" id="Resource_x51n4"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 3
+content = "[color=purple]u need to turn on JavaScript look it up[/color]"
+username = "netexpert1975"
+
+[sub_resource type="Resource" id="Resource_r4ptt"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 0
+content = "OMG anyone can post a comment?? O_O"
+username = "kittylover5912"
+
+[sub_resource type="Resource" id="Resource_1lgfh"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 1
+content = "[color=purple]that's pretty standard nowadays[/color]"
+username = "netexpert1975"
+
+[sub_resource type="Resource" id="Resource_dj712"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 2
+content = ":OO how do u do colors like that?!? (●◡●)"
+username = "kittylover5912"
+
+[sub_resource type="Resource" id="Resource_d5bhd"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 3
+content = "[color=purple]BBCodes look it up. go to forums for help, not here[/color]"
+username = "netexpert1975"
+
+[sub_resource type="Resource" id="Resource_g461o"]
+resource_name = "New Comment"
+script = ExtResource("9_la6gd")
+depth = 4
+content = "waa it's too confusing ＞︿＜ thanks tho!! \\(￣︶￣*\\))"
+username = "kittylover5912"
 
 [node name="Window" type="Control"]
 layout_mode = 3
@@ -237,31 +302,49 @@ current_tab = 0
 [node name="ArchiveGames" type="ScrollContainer" parent="WindowContent/TabContainer"]
 layout_mode = 2
 follow_focus = true
+scroll_vertical = 376
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames"]
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Header" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer"]
+[node name="Header" type="Control" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Header"]
+[node name="Label" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/Header"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 15.0
-theme_override_font_sizes/font_size = 32
-text = "  ArchiveGames.net"
+offset_right = 279.0
+offset_bottom = 36.0
+focus_mode = 2
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[b][font_size=\"30px\"]ArchiveGames.net[/font_size][/b]"
+fit_content = true
+scroll_active = false
+selection_enabled = true
 
-[node name="Game Section" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer"]
+[node name="HSeparator3" type="HSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Game Section" type="Control" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 
-[node name="EmbeddedGame" type="ColorRect" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Game Section"]
+[node name="EmbeddedGame" type="ColorRect" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/Game Section"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 8
@@ -277,12 +360,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="GameOrigin" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Game Section/EmbeddedGame"]
+[node name="GameOrigin" type="Control" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/Game Section/EmbeddedGame"]
 layout_mode = 1
 anchors_preset = 0
 script = ExtResource("6_gwa5v")
 
-[node name="Title" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Game Section/EmbeddedGame/GameOrigin" instance=ExtResource("6_hpoad")]
+[node name="Title" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/Game Section/EmbeddedGame/GameOrigin" instance=ExtResource("6_hpoad")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -292,15 +375,100 @@ anchor_bottom = 0.5
 offset_right = 550.0
 offset_bottom = 400.0
 
-[node name="Comments" type="Control" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer"]
+[node name="Label" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "*If you only see a black screen, please [color=blue][url]follow this guide[/url][/color] to enable JavaScript in your browser."
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="HSeparator" type="HSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="WindowContent/TabContainer/ArchiveGames/MarginContainer/Comments"]
+[node name="CommentsTitle" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[font_size=\"30px\"]Comments[/font_size]"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="HSeparator2" type="HSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Comments" type="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("8_680kt")
+comments = Array[ExtResource("9_la6gd")]([SubResource("Resource_wcwxh"), SubResource("Resource_xmtck"), SubResource("Resource_uqoyl"), SubResource("Resource_x51n4"), SubResource("Resource_r4ptt"), SubResource("Resource_1lgfh"), SubResource("Resource_dj712"), SubResource("Resource_d5bhd"), SubResource("Resource_g461o")])
+
+[node name="PostComment" type="Panel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/PostComment"]
+layout_mode = 2
+offset_right = 170.0
+offset_bottom = 35.0
+placeholder_text = "Start typing here..."
+wrap_mode = 1
+caret_blink = true
+caret_multiple = false
+
+[node name="Button" type="Button" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/PostComment"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 15.0
-theme_override_font_sizes/font_size = 32
-text = " Comments"
+offset_top = 39.0
+offset_right = 58.0
+offset_bottom = 60.0
+tooltip_text = "Type here with BBCode"
+text = "  Submit  "
+
+[node name="PostComment2" type="Panel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/PostComment2"]
+layout_mode = 2
+offset_right = 170.0
+offset_bottom = 35.0
+placeholder_text = "Start typing here..."
+wrap_mode = 1
+caret_blink = true
+caret_multiple = false
+
+[node name="Button" type="Button" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer/PostComment2"]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 58.0
+offset_bottom = 60.0
+tooltip_text = "Type here with BBCode"
+text = "  Submit  "
+
+[node name="VSeparator" type="VSeparator" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Label" type="RichTextLabel" parent="WindowContent/TabContainer/ArchiveGames/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 2
+mouse_default_cursor_shape = 1
+bbcode_enabled = true
+text = "[b][font_size=\"30px\"]Potion Cellar[/font_size][/b]
+[p]Creator: [color=blue][url]edwhui[/url][/color][/p]
+[p]Decription:
+Hope you like my first game! I had a friend help with the art but I made everything else myself![/p]"
+fit_content = true
+scroll_active = false
+selection_enabled = true
 
 [node name="RightHandle" type="Control" parent="."]
 layout_mode = 1

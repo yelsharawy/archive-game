@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://doo45g6tawsby"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrsn3"]
+content_margin_left = 8.0
+draw_center = false
+border_width_left = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="Comment" type="MarginContainer"]
+theme_override_constants/margin_left = 0
+
+[node name="Content" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+focus_mode = 2
+mouse_default_cursor_shape = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nrsn3")
+bbcode_enabled = true
+text = "wth is this game haha how old are you five hahaha
+— demonslayeroverlord79"
+fit_content = true
+scroll_active = false
+selection_enabled = true
