@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxku36gxwsvj2"]
+[gd_scene load_steps=6 format=3 uid="uid://dxku36gxwsvj2"]
 
+[ext_resource type="Script" path="res://game/levels/level_one/shelf/shelf.gd" id="1_d54ni"]
 [ext_resource type="Texture2D" uid="uid://bvhx5ti0n8mvi" path="res://assets/programmer/level_one/shelf-right.png" id="1_d72nt"]
 [ext_resource type="PackedScene" uid="uid://bvwatuyc7tin4" path="res://game/components/scene_portal/scene_portal.tscn" id="2_lv5bv"]
 [ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="3_8dm41"]
 [ext_resource type="PackedScene" uid="uid://dhis085ahwn6d" path="res://game/levels/level_one/shelf_spider/shelf_spider.tscn" id="3_a8x8p"]
 
 [node name="Shelf" type="Node2D"]
+script = ExtResource("1_d54ni")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

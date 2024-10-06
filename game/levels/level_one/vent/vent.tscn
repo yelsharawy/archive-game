@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgs4h2algmd5r"]
+[gd_scene load_steps=27 format=3 uid="uid://dgs4h2algmd5r"]
 
 [ext_resource type="Texture2D" uid="uid://csubcyil28ij1" path="res://assets/programmer/level_one/vent.png" id="1_c88om"]
+[ext_resource type="Script" path="res://game/levels/level_one/vent/win.gd" id="1_cmvlf"]
 [ext_resource type="Script" path="res://game/levels/level_one/vent/safe.gd" id="2_51qh4"]
 [ext_resource type="Texture2D" uid="uid://b0t0ttcxy3g47" path="res://assets/programmer/level_one/safe_open.png" id="2_fwao6"]
 [ext_resource type="Script" path="res://game/levels/level_one/vent/vent.gd" id="2_o3y3o"]
@@ -71,6 +72,7 @@ special_item_responses = {
 }
 
 [node name="Vent" type="Node2D"]
+script = ExtResource("1_cmvlf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -319,6 +321,8 @@ responses = SubResource("Resource_fdd7u")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentTransform/Interactable/Area2D"]
 polygon = PackedVector2Array(76, 32, 489, 33, 487, 369, 61, 370)
 
+[connection signal="clicked" from="WinGameInteractable" to="." method="win"]
+[connection signal="on_happen" from="Safe/VentClearEvent" to="." method="win"]
 [connection signal="on_happen" from="Safe/VentClearEvent" to="WinGameInteractable" method="set_visible" binds= [true]]
 [connection signal="clicked" from="Safe/SafeOpenItem/Interactable" to="Safe/VentClearEvent" method="happen"]
 [connection signal="clicked" from="Safe/AnvilItem/Interactable" to="Safe/AnvilEvent" method="happen"]

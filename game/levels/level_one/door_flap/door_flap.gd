@@ -8,6 +8,11 @@ signal correct_item_placed()
 func _ready() -> void:
 	assert(place_location.get_child_count() == 0, "no children under place location pls")
 
+	var post := func() -> void:
+		Comments.post(Comments.create(0, "crows eat bugs. hehe", "anon"))
+
+	get_tree().create_timer(20).timeout.connect(post)
+
 func interacted() -> void:
 	# if theres already an item childed to it, dont place. could get fucked up 
 	if place_location.get_child_count() == 0:
