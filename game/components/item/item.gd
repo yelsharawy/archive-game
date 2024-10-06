@@ -8,6 +8,7 @@ var _sprite: Sprite2D
 ## Called by the Inventory when a player tries to put the active
 ## item down on something
 func _place_in_world(new_parent: Node, keep_transform: bool) -> void:
+	interactable.visible = true
 	interactable.clicked.connect(_pick_up)
 	reparent(new_parent, keep_transform)
 

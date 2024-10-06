@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhis085ahwn6d"]
+
+[ext_resource type="Texture2D" uid="uid://dmq0qa1wimaql" path="res://assets/programmer/level_one/potion_spider.png" id="1_o1wt4"]
+[ext_resource type="PackedScene" uid="uid://b1orwamk73h8" path="res://game/components/item/item.tscn" id="2_lg7u1"]
+[ext_resource type="Texture2D" uid="uid://r0rt3s7uleml" path="res://assets/programmer/level_one/potion_spider_item.png" id="3_81sj0"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="4_d8u4r"]
+
+[node name="ShelfSpider" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_o1wt4")
+centered = false
+
+[node name="Item" parent="." instance=ExtResource("2_lg7u1")]
+position = Vector2(172, 273)
+id = &"potion_spider"
+
+[node name="Sprite2D" type="Sprite2D" parent="Item"]
+texture_filter = 1
+texture = ExtResource("3_81sj0")
+
+[node name="Interactable" parent="Item" instance=ExtResource("4_d8u4r")]
+
+[node name="Area2D" type="Area2D" parent="Item/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Item/Interactable/Area2D"]
+polygon = PackedVector2Array(-4, -46, 32, -23, 52, 19, -5, 53, -48, 24, -50, -27)

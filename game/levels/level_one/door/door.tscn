@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://ekkah3patoyn"]
+
+[ext_resource type="Texture2D" uid="uid://cgflc6xyfpspl" path="res://assets/programmer/level_one/door.png" id="1_bcksu"]
+[ext_resource type="PackedScene" uid="uid://b1orwamk73h8" path="res://game/components/item/item.tscn" id="2_7q170"]
+[ext_resource type="PackedScene" uid="uid://bvwatuyc7tin4" path="res://game/components/scene_portal/scene_portal.tscn" id="2_msinm"]
+[ext_resource type="Resource" uid="uid://bylhq5526j3ip" path="res://game/levels/level_one/door/door_handle_responses.tres" id="3_noey6"]
+[ext_resource type="Texture2D" uid="uid://blrljete6kob1" path="res://assets/programmer/level_one/crowbar.png" id="3_rqyes"]
+[ext_resource type="PackedScene" uid="uid://bklylosxj8fwi" path="res://game/levels/level_one/door_flap/door_flap.tscn" id="4_fy1xu"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="4_r4377"]
+
+[node name="Door" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bcksu")
+centered = false
+
+[node name="Handle" parent="." instance=ExtResource("4_r4377")]
+texture_filter = 1
+_required_item = &"IMPOSSIBLE"
+responses = ExtResource("3_noey6")
+
+[node name="Area2D" type="Area2D" parent="Handle"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Handle/Area2D"]
+polygon = PackedVector2Array(336, 173, 312, 163, 347, 149, 375, 152, 374, 169)
+
+[node name="DoorFlap" parent="." instance=ExtResource("2_msinm")]
+scene = ExtResource("4_fy1xu")
+
+[node name="Interactable" parent="DoorFlap" instance=ExtResource("4_r4377")]
+
+[node name="Area2D" type="Area2D" parent="DoorFlap/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorFlap/Interactable/Area2D"]
+polygon = PackedVector2Array(221, 337, 218, 251, 325, 249, 338, 345)
+
+[node name="Crowbar" parent="." instance=ExtResource("2_7q170")]
+position = Vector2(472, 281)
+id = &"crowbar"
+
+[node name="Sprite2D" type="Sprite2D" parent="Crowbar"]
+texture_filter = 1
+texture = ExtResource("3_rqyes")
+
+[node name="Interactable" parent="Crowbar" instance=ExtResource("4_r4377")]
+
+[node name="Area2D" type="Area2D" parent="Crowbar/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Crowbar/Interactable/Area2D"]
+polygon = PackedVector2Array(-41, 42, -42, 19, -12, -17, -8, -37, -28, -90, 2, -90, 26, -49, 41, 16, 48, 56, 46, 92, 11, 99, -21, 80)

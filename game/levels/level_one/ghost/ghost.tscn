@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://hemvmpx3qtyc"]
+
+[ext_resource type="Script" path="res://game/levels/level_one/ghost/ghost.gd" id="1_ch7kb"]
+[ext_resource type="Texture2D" uid="uid://bp4oo2j3xwrd8" path="res://assets/programmer/level_one/ghost.png" id="1_pfexp"]
+[ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="2_xk06y"]
+[ext_resource type="Resource" uid="uid://cc7rh1ll41phd" path="res://game/levels/level_one/ghost/ghost_responses.tres" id="4_grtg5"]
+
+[node name="Ghost" type="Node2D"]
+script = ExtResource("1_ch7kb")
+lines = Array[String](["Hey, kid. Good to see a friendly face around here.", "I can help you out, if you get stuck.", "She's gonna cook you, like she did me.", "We're stuck in a witch's closet."])
+lines_has_anvil = Array[String](["Ah, The Anvil. That's her only weakness.", "You need any help with that? It looks heavy."])
+lines_has_crowbar = Array[String](["She just added this shelf to the room. Interior decorating, or something.", "The witch can't move the shelf with her bare hands."])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_pfexp")
+centered = false
+
+[node name="Interactable" parent="." instance=ExtResource("2_xk06y")]
+responses = ExtResource("4_grtg5")
+
+[node name="Area2D" type="Area2D" parent="Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Area2D"]
+polygon = PackedVector2Array(103, 369, 130, 328, 144, 232, 173, 88, 265, 41, 338, 68, 355, 185, 363, 279, 375, 342, 411, 387, 340, 395, 119, 395, 99, 389)
+
+[connection signal="clicked" from="Interactable" to="." method="speak"]

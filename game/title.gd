@@ -10,9 +10,6 @@ func _ready() -> void:
 		get_parent().add_child(level_select.instantiate())
 		queue_free()
 	)
-	quit_button.pressed.connect(func() -> void:
-		get_tree().quit()
-	)
 
 	var move_index := func() -> void:
 		get_parent().move_child(self, get_parent().get_child_count() - 1)

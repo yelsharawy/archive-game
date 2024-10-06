@@ -1,63 +1,104 @@
-[gd_scene load_steps=7 format=3 uid="uid://l0k6eqe1wbh0"]
+[gd_scene load_steps=14 format=3 uid="uid://b0xe10kyf0ir2"]
 
-[ext_resource type="Texture2D" uid="uid://b2r1bufhh0h5h" path="res://game/levels/level_one/room.png" id="1_bqxhr"]
+[ext_resource type="PackedScene" uid="uid://b1orwamk73h8" path="res://game/components/item/item.tscn" id="1_ca4dw"]
+[ext_resource type="Texture2D" uid="uid://ci4fkx0b33ico" path="res://assets/programmer/level_one/room.png" id="1_fc13k"]
+[ext_resource type="Texture2D" uid="uid://52mofjve5fye" path="res://assets/programmer/level_one/screwdriver.png" id="2_j27p1"]
 [ext_resource type="PackedScene" uid="uid://bvwatuyc7tin4" path="res://game/components/scene_portal/scene_portal.tscn" id="2_olhgj"]
-[ext_resource type="PackedScene" uid="uid://363bd8g2afai" path="res://game/levels/level_one/shelf_right/shelf_right.tscn" id="3_hnnr1"]
+[ext_resource type="PackedScene" uid="uid://dgs4h2algmd5r" path="res://game/levels/level_one/vent/vent.tscn" id="3_6njl6"]
+[ext_resource type="PackedScene" uid="uid://hemvmpx3qtyc" path="res://game/levels/level_one/ghost/ghost.tscn" id="3_kx3ey"]
 [ext_resource type="PackedScene" uid="uid://fr271v4iwjbn" path="res://game/components/interactable/interactable.tscn" id="3_yg1d3"]
-[ext_resource type="PackedScene" uid="uid://bc2b82cpxock5" path="res://game/levels/level_one/shelf_left/shelf_left.tscn" id="5_ourgh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sa1a"]
-size = Vector2(104.5, 114)
+[ext_resource type="PackedScene" uid="uid://ekkah3patoyn" path="res://game/levels/level_one/door/door.tscn" id="5_x4t3r"]
+[ext_resource type="Texture2D" uid="uid://d3hw02chf7ckn" path="res://assets/programmer/level_one/shelf.png" id="6_3wj1m"]
+[ext_resource type="PackedScene" uid="uid://by6np47wr3jj1" path="res://game/levels/level_one/spider/spider.tscn" id="6_g5mlk"]
+[ext_resource type="PackedScene" uid="uid://dxku36gxwsvj2" path="res://game/levels/level_one/shelf/shelf.tscn" id="7_mphsh"]
+[ext_resource type="Script" path="res://game/levels/level_one/shelf.gd" id="7_tkq87"]
+[ext_resource type="PackedScene" uid="uid://ckw2nto1uh77q" path="res://game/components/event/event.tscn" id="8_622yl"]
 
 [node name="LevelOne" type="Node2D"]
 
-[node name="RoomSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_bqxhr")
+texture = ExtResource("1_fc13k")
 centered = false
-metadata/_aseprite_wizard_config_ = {
-"i_mode": 1,
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "",
-"slice": "",
-"source": "res://assets/programmer/level_one/room.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "3bbe3309181a1a2194e0611afd1dca54"
 
-[node name="RightShelf" parent="." instance=ExtResource("2_olhgj")]
-position = Vector2(43, 152)
-scene = ExtResource("3_hnnr1")
+[node name="VentScene" parent="." instance=ExtResource("2_olhgj")]
+scene = ExtResource("3_6njl6")
 
-[node name="Interactable" parent="RightShelf" instance=ExtResource("3_yg1d3")]
+[node name="Interactable" parent="VentScene" instance=ExtResource("3_yg1d3")]
+_required_event = &"moved_shelf"
 
-[node name="Area2D" type="Area2D" parent="RightShelf/Interactable"]
+[node name="Area2D" type="Area2D" parent="VentScene/Interactable"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightShelf/Interactable/Area2D"]
-polygon = PackedVector2Array(405, -70, 347, -29, 339, 219, 404, 251, 508, 248, 506, -105, 477, -109)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentScene/Interactable/Area2D"]
+polygon = PackedVector2Array(393, 69, 458, 48, 457, 127, 399, 136)
 
-[node name="LeftShelf" parent="." instance=ExtResource("2_olhgj")]
-position = Vector2(43, 152)
-scene = ExtResource("5_ourgh")
+[node name="GhostScene" parent="." instance=ExtResource("2_olhgj")]
+scene = ExtResource("3_kx3ey")
 
-[node name="Interactable" parent="LeftShelf" instance=ExtResource("3_yg1d3")]
+[node name="Interactable" parent="GhostScene" instance=ExtResource("3_yg1d3")]
 
-[node name="Area2D" type="Area2D" parent="LeftShelf/Interactable"]
+[node name="Area2D" type="Area2D" parent="GhostScene/Interactable"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftShelf/Interactable/Area2D"]
-polygon = PackedVector2Array(-42, -79, 44, -28, 51, 219, -3, 248, -44, 247)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GhostScene/Interactable/Area2D"]
+polygon = PackedVector2Array(115, 262, 125, 242, 119, 218, 138, 203, 182, 200, 193, 262, 200, 288, 182, 301, 157, 301, 127, 297, 114, 282)
 
-[node name="DoorHandle" parent="." instance=ExtResource("2_olhgj")]
-position = Vector2(43, 152)
+[node name="DoorScene" parent="." instance=ExtResource("2_olhgj")]
+scene = ExtResource("5_x4t3r")
 
-[node name="Interactable" parent="DoorHandle" instance=ExtResource("3_yg1d3")]
+[node name="Interactable" parent="DoorScene" instance=ExtResource("3_yg1d3")]
 
-[node name="Area2D" type="Area2D" parent="DoorHandle/Interactable"]
+[node name="Area2D" type="Area2D" parent="DoorScene/Interactable"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorHandle/Interactable/Area2D"]
-position = Vector2(215.75, 80)
-shape = SubResource("RectangleShape2D_0sa1a")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorScene/Interactable/Area2D"]
+polygon = PackedVector2Array(205, 295, 202, 99, 319, 99, 318, 305)
+
+[node name="SpiderScene" parent="." instance=ExtResource("2_olhgj")]
+scene = ExtResource("6_g5mlk")
+
+[node name="Interactable" parent="SpiderScene" instance=ExtResource("3_yg1d3")]
+
+[node name="Area2D" type="Area2D" parent="SpiderScene/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpiderScene/Interactable/Area2D"]
+polygon = PackedVector2Array(65, 106, 59, 151, 93, 180, 126, 164, 133, 113, 117, 80, 85, 79)
+
+[node name="Screwdriver" parent="." instance=ExtResource("1_ca4dw")]
+position = Vector2(389, 327)
+id = &"screwdriver"
+
+[node name="Sprite2D" type="Sprite2D" parent="Screwdriver"]
+texture_filter = 1
+texture = ExtResource("2_j27p1")
+
+[node name="Interactable" parent="Screwdriver" instance=ExtResource("3_yg1d3")]
+_required_event = &"moved_shelf"
+
+[node name="Area2D" type="Area2D" parent="Screwdriver/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Screwdriver/Interactable/Area2D"]
+polygon = PackedVector2Array(-20, 8, -30, -23, 2, -43, 23, -10, 27, 19, 16, 39, -6, 24)
+
+[node name="Shelf" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("6_3wj1m")
+centered = false
+script = ExtResource("7_tkq87")
+movement = Vector2(60, 60)
+time = 1.0
+
+[node name="Event" parent="Shelf" instance=ExtResource("8_622yl")]
+event_name = &"moved_shelf"
+
+[node name="ScenePortal" parent="Shelf" instance=ExtResource("2_olhgj")]
+scene = ExtResource("7_mphsh")
+
+[node name="Interactable" parent="Shelf/ScenePortal" instance=ExtResource("3_yg1d3")]
+_required_item = &"ANYITEM_OR_EMPTYHAND"
+
+[node name="Area2D" type="Area2D" parent="Shelf/ScenePortal/Interactable"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelf/ScenePortal/Interactable/Area2D"]
+polygon = PackedVector2Array(347, 333, 358, 73, 550, 45, 548, 402, 425, 402)
+
+[connection signal="shelf_began_moving" from="Shelf" to="Shelf/Event" method="happen"]
+[connection signal="clicked" from="Shelf/ScenePortal/Interactable" to="Shelf" method="move_shelf"]

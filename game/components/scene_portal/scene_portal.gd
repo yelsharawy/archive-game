@@ -9,5 +9,5 @@ extends Node2D
 func _ready() -> void:
 	if not interactable:
 		interactable = ComponentUtil.get_one_child_of_type(self, Interactable)
-	interactable.clicked.connect(func() -> void:
+	interactable.clicked_emptyhand.connect(func() -> void:
 		SceneStack.push(scene))
