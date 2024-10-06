@@ -62,5 +62,5 @@ z_index = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentCoverTransform/Interactable/Area2D"]
 polygon = PackedVector2Array(65, 350, 65, 36, 476, 37, 469, 350)
 
-[connection signal="clicked" from="VentCoverTransform/Interactable" to="VentCoverTransform" method="_rotate_down" flags=6]
 [connection signal="clicked" from="VentCoverTransform/Interactable" to="Event" method="happen" flags=6]
+[connection signal="clicked" from="VentCoverTransform/Interactable" to="VentCoverTransform" method="_rotate_down" flags=6]
