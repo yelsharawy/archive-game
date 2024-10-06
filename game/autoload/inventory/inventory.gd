@@ -71,6 +71,9 @@ func pick_up(item: Item) -> void:
 	# resolving virtual position after storing z index, since this function
 	# will modify the z index
 	_resolve_virtual_positions()
+	
+	# play pickup sound effect
+	$PickupSound.play()
 
 ## This is the way that items leave the inventory, removing their entries from
 ## the item-original-state tracking dictionaries
