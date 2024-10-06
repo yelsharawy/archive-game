@@ -77,6 +77,9 @@ func place_down(target: Node) -> void:
 		tween.kill()
 		_item_tween.erase(_active_item.id)
 
+func has_item(item: StringName) -> bool:
+	return _items.has(item)
+
 ## Check if an item is currently being held (appearing under the cursor)
 func is_item_active(item: StringName) -> bool:
 	if item.is_empty():

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 DialogueDisplay="*res://game/autoload/dialogue_display/dialogue_display.tscn"
 Inventory="*res://game/autoload/inventory/inventory.tscn"
 SceneStack="*res://game/autoload/scene_stack/scene_stack.tscn"
+Events="*res://game/autoload/events/events.tscn"
 
 [display]
 
