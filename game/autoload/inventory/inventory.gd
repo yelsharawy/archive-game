@@ -2,6 +2,11 @@ extends Node
 
 const TIME_TO_INVENTORY_TWEEN: float = 0.1
 
+## Called whenever the user tries to use an item on something but it is not a
+## valid item (using the crowbar on a NPC, for example). Not called until the
+## button is released.
+signal bad_item_used(item: Item)
+
 @export var _virtual_position_top: Node2D
 @export var _virtual_position_bottom: Node2D
 # all items will have a z-index bigger than this area
@@ -19,17 +24,25 @@ var _item_click_area_z_index: Dictionary
 # dictionary mapping each item by id to its one tween
 var _item_tween: Dictionary
 
+# input state for left mouse click. needed so that we can catch the click
+# happening at input start and then wait to see if anyone "used" the click
+# at the end of the frame. see: _release_if_unhandled
+var _handled := false
+
 func _ready() -> void:
 	sprite_2d.visible = false
 	SceneStack.register_game_autoload(self)
 	# keep ourselves at the bottom of the scene tree, so we get input before game
 	SceneStack.scene_switched.connect(func() -> void:
 		get_parent().move_child(self, get_parent().get_child_count())
+		# always release on scene switch
+		_release_active_item()
 		)
-	click_swallow_area.input_event.connect(func(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-		if event.is_action(&"mouse_click_primary"):
-			viewport.set_input_as_handled()
-	)
+	bad_item_used.connect(_release_active_item)
+
+## Called from Interactable elements
+func set_click_as_handled() -> void:
+	_handled = true
 
 func set_visible(value: bool) -> void:
 	sprite_2d.visible = value
@@ -71,7 +84,7 @@ func pick_up(item: Item) -> void:
 	# resolving virtual position after storing z index, since this function
 	# will modify the z index
 	_resolve_virtual_positions()
-	
+
 	# play pickup sound effect
 	$PickupSound.play()
 
@@ -124,7 +137,7 @@ func is_item_active(item: StringName) -> bool:
 func is_any_item_active() -> bool:
 	return _active_item != null
 
-func release_active_item() -> void:
+func _release_active_item() -> void:
 	if not is_instance_valid(_active_item):
 		return
 	var item := _active_item
@@ -165,9 +178,15 @@ func _tween_item_to_zero(item: Item) -> void:
 	tween.tween_property(item, "position", Vector2.ZERO, TIME_TO_INVENTORY_TWEEN)
 	tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 
+
 func _input(event: InputEvent) -> void:
-	if _active_item and event.is_action_pressed(&"mouse_click_primary"):
-		release_active_item.call_deferred()
+	# input cleanup, we can find failed
+	if event.is_action_released(&"mouse_click_primary"):
+		if not _handled:
+			bad_item_used.emit(_active_item)
+		_handled = false
+
+	# make item in use hover at cursor position
 	if _active_item and event is InputEventMouseMotion:
 		# move item without tweening when tracking the cursor
 		_active_item.get_parent().global_position = event.global_position

@@ -47,7 +47,7 @@ func area_input(viewport: Node, ev: InputEvent, _shape: int) -> void:
 				clicked_emptyhand.emit()
 			_used = true
 			clicked.emit()
-			viewport.set_input_as_handled()
+			Inventory.set_click_as_handled()
 		elif Inventory.is_any_item_active():
 			var custom_reply: Variant = responses.special_item_responses.get(Inventory.get_active_item(), null)
 			if custom_reply is String:
