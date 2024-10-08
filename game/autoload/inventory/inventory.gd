@@ -116,22 +116,9 @@ func has_item(item: StringName) -> bool:
 	return _items.has(item)
 
 ## Check if an item is currently being held (appearing under the cursor)
-## &"ANYITEM" is a required item name that can be used by interactables to
-## allow any item to be clicked.
-## &"ANYITEM_OR_EMPTYHAND" is a required item name that can be used by
-## interactables to make sure they always emit clicked, no matter what
-## the player clicks on them with.
+## If item is &"" and there is no active item, this returns true
 func is_item_active(item: StringName) -> bool:
-	if item.is_empty():
-		# requires no active item
-		return _active_item == null
-	if item == &"ANYITEM_OR_EMPTYHAND":
-		return true
-	if not _active_item:
-		return false
-	if item == &"ANYITEM":
-		return true
-	return item == _active_item.id
+	return (item.is_empty() and not _active_item) or item == _active_item.id
 
 ## Check if there is an item active or not
 func is_any_item_active() -> bool:
