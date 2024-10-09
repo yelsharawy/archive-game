@@ -166,6 +166,11 @@ func is_item_active(item: StringName) -> bool:
 func is_any_item_active() -> bool:
 	return _active_item != null
 
+## Called by items when they are clicked. Inventory handles what should happen
+## at that point.
+func _item_clicked(item: Item) -> void:
+	pass
+
 func _release_active_item() -> void:
 	if not is_instance_valid(_active_item):
 		return

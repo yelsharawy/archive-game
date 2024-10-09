@@ -1,28 +1,27 @@
 class_name Item
 extends Node2D
 
-var interactable: Interactable
-var _sprite: Sprite2D
 @export var id: StringName = &"NAME_ME"
+
+var click_area: Area2D
+var sprite: Sprite2D
 
 ## Called by the Inventory when a player tries to put the active
 ## item down on something
+## TODO: move this to Inventory
 func _place_in_world(new_parent: Node, keep_transform: bool) -> void:
-	interactable.visible = true
-	interactable.clicked.connect(_pick_up)
+	click_area.visible = true
 	reparent(new_parent, keep_transform)
 
 func _ready() -> void:
-	if not interactable:
-		interactable = ComponentUtil.get_one_child_of_type(self, Interactable)
-	if not _sprite:
-		_sprite = ComponentUtil.get_one_child_of_type(self, Sprite2D)
-	# z index is modified from Inventory, but it only touches this Item's z index and assumes
-	# that interactable and sprite will be children
-	assert(interactable.z_index == z_index, "Different z index for item's area and sprite and root will cause unexpected behavior")
-	assert(_sprite.z_index == z_index, "Different z index for item's area and sprite and root will cause unexpected behavior")
-	interactable.clicked.connect(_pick_up)
+	if not click_area:
+		click_area = ComponentUtil.get_one_child_of_type(self, Area2D)
+	if not sprite:
+		sprite = ComponentUtil.get_one_child_of_type(self, Sprite2D)
 
-func _pick_up() -> void:
-	interactable.clicked.disconnect(_pick_up)
-	Inventory.pick_up(self)
+	click_area.input_event.connect(_area_input)
+
+func _area_input(_viewport: Node, ev: InputEvent, _shape: int) -> void:
+	if ev.is_action_pressed(&"mouse_click_primary"):
+		# let the inventory handle the behavior of clicking an item
+		Inventory._item_clicked(self)
