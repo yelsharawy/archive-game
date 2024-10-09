@@ -1,11 +1,22 @@
 extends Node
 
 const TIME_TO_INVENTORY_TWEEN: float = 0.1
+const BAD_ITEM_REMARKS: Array[String] = [
+	"No good.",
+	"Nothing to that.",
+	"Whatever.",
+]
 
 ## Called whenever the user tries to use an item on something but it is not a
 ## valid item (using the crowbar on a NPC, for example). Not called until the
 ## button is released.
-signal bad_item_used(item: Item)
+signal item_used_on_nothing(item: Item)
+signal item_picked_up(item: Item)
+## Called when an item is used on an Interactable, but it didn't meet those
+## requirements.
+signal bad_item_use(item: Item)
+## Called whenever the player correctly uses and item on an Interactable
+signal good_item_use(item: Item)
 
 @export var _virtual_position_top: Node2D
 @export var _virtual_position_bottom: Node2D
@@ -28,6 +39,8 @@ var _item_tween: Dictionary
 # happening at input start and then wait to see if anyone "used" the click
 # at the end of the frame. see: _release_if_unhandled
 var _handled := false
+var _is_use_good := false
+var _click_release_callback: Callable
 
 func _ready() -> void:
 	sprite_2d.visible = false
@@ -38,11 +51,36 @@ func _ready() -> void:
 		# always release on scene switch
 		_release_active_item()
 		)
-	bad_item_used.connect(_release_active_item)
 
-## Called from Interactable elements
-func set_click_as_handled() -> void:
+	# always release active item after clicking
+	# also provide some default dialogue if no interactable recieved the click
+	item_used_on_nothing.connect(func(_item: Item) -> void:
+		if _active_item:
+			DialogueDisplay.player_remark(BAD_ITEM_REMARKS.pick_random())
+		_release_active_item()
+		)
+	bad_item_use.connect(func(_item: Item) -> void:
+		_release_active_item()
+		)
+	good_item_use.connect(func(_item: Item) -> void:
+		_release_active_item()
+		)
+
+	item_picked_up.connect(func(_item: Item) -> void:
+		$PickupSound.play()
+		)
+
+## Called from Interactable elements to declare a click as having been
+## successful or not.
+func set_click_handled_good(is_good: bool) -> void:
 	_handled = true
+	_is_use_good = is_good
+
+## Called from interactable elements to register a function to be called when
+## the player releases their mouse. This function only persists for the current
+## mouse click.
+func set_release_callback(callback: Callable) -> void:
+	_click_release_callback = callback
 
 func set_visible(value: bool) -> void:
 	sprite_2d.visible = value
@@ -71,6 +109,7 @@ func pick_up(item: Item) -> void:
 		_resolve_virtual_positions()
 	# store callback so it can be de-registered later
 	_item_inventory_events[item.id] = new_clicked_event
+	assert(item.interactable.required_item == &"", "assuming that all items can be unconditionally clicked on/picked up")
 	item.interactable.clicked.connect(new_clicked_event)
 
 	# reparent to the inventory and tween it into the new position
@@ -84,9 +123,7 @@ func pick_up(item: Item) -> void:
 	# resolving virtual position after storing z index, since this function
 	# will modify the z index
 	_resolve_virtual_positions()
-
-	# play pickup sound effect
-	$PickupSound.play()
+	item_picked_up.emit(item)
 
 ## This is the way that items leave the inventory, removing their entries from
 ## the item-original-state tracking dictionaries
@@ -118,7 +155,12 @@ func has_item(item: StringName) -> bool:
 ## Check if an item is currently being held (appearing under the cursor)
 ## If item is &"" and there is no active item, this returns true
 func is_item_active(item: StringName) -> bool:
-	return (item.is_empty() and not _active_item) or item == _active_item.id
+	assert(item != &"ANYITEM_OR_EMPTYHAND") # these ids are both legacy, handled by Interactable now
+	assert(item != &"ANYITEM")
+	if not _active_item:
+		return item.is_empty()
+	else:
+		return item == _active_item.id
 
 ## Check if there is an item active or not
 func is_any_item_active() -> bool:
@@ -169,9 +211,23 @@ func _tween_item_to_zero(item: Item) -> void:
 func _input(event: InputEvent) -> void:
 	# input cleanup, we can find failed
 	if event.is_action_released(&"mouse_click_primary"):
+		if not _click_release_callback.is_null():
+			_click_release_callback.call()
+
+		# emit signal for the type of usage
 		if not _handled:
-			bad_item_used.emit(_active_item)
+			# no Interactable caught the click
+			item_used_on_nothing.emit(_active_item)
+		elif _is_use_good:
+			good_item_use.emit(_active_item)
+		else:
+			bad_item_use.emit(_active_item)
+
+		# reset variables for the next click
 		_handled = false
+		_is_use_good = false
+		# null callable do nothing on release by default
+		_click_release_callback = Callable()
 
 	# make item in use hover at cursor position
 	if _active_item and event is InputEventMouseMotion:

@@ -100,7 +100,8 @@ event_name = &"moved_shelf"
 scene = ExtResource("7_mphsh")
 
 [node name="Interactable" parent="Shelf/ScenePortal" instance=ExtResource("3_yg1d3")]
-_required_item = &"ANYITEM_OR_EMPTYHAND"
+allow_emptyhand_if_required = true
+_required_item = &"crowbar"
 
 [node name="Area2D" type="Area2D" parent="Shelf/ScenePortal/Interactable"]
 
@@ -108,4 +109,4 @@ _required_item = &"ANYITEM_OR_EMPTYHAND"
 polygon = PackedVector2Array(372, 294, 370, 110, 550, 58, 548, 402, 443, 404)
 
 [connection signal="shelf_began_moving" from="Shelf" to="Shelf/Event" method="happen"]
-[connection signal="clicked" from="Shelf/ScenePortal/Interactable" to="Shelf" method="move_shelf"]
+[connection signal="clicked_item" from="Shelf/ScenePortal/Interactable" to="Shelf" method="move_shelf" flags=6]

@@ -20,6 +20,10 @@ signal clicked_item()
 @export var _required_event: StringName = &""
 @export var responses: Responses
 
+var required_item: StringName:
+	get:
+		return _required_item
+
 var _click_area: Area2D
 
 func _ready() -> void:
@@ -51,8 +55,8 @@ func _valid_click() -> void:
 		_click_area.input_event.disconnect(area_input)
 
 	# let the Inventory know that someone got the click so it can know when a
-	# click failed. NOTE: not needed right now?
-	Inventory.set_click_as_handled()
+	# click failed
+	Inventory.set_click_handled_good(true)
 
 # load a custom item reply, or use fallback from responses.wrong_item_responses
 func _play_bad_item_response() -> void:
@@ -63,32 +67,42 @@ func _play_bad_item_response() -> void:
 		DialogueDisplay.npc_remark(custom_reply["npc_name"], custom_reply["remark"])
 	else:
 		DialogueDisplay.player_remark(_random_line(responses.wrong_item_responses))
+	Inventory.set_click_handled_good(false)
 
 func _play_random_missing_required_item_response() -> void:
 	DialogueDisplay.player_remark(_random_line(responses.missing_required_responses))
+	# if we respond with dialogue, we dont want the inventory also doing the generic "nothing there to use this item on" dialogue
+	Inventory.set_click_handled_good(false)
 
 func area_input(_viewport: Node, ev: InputEvent, _shape: int) -> void:
 	if not _required_event.is_empty() and not Events.has_event_happened(_required_event):
 		return
 
 	if ev.is_action_pressed(&"mouse_click_primary"):
-		var anyitem := _required_item == &"ANYITEM"
-
-		# first case: we require a specific item
 		if not _required_item.is_empty():
-
-			# three possible ways this could match
-			var valid_specific_item = not anyitem and Inventory.is_item_active(_required_item)
-			var valid_anyitem = anyitem and Inventory.is_any_item_active()
-			var valid_emptyhand = allow_emptyhand_if_required and not Inventory.is_any_item_active()
-
-			if valid_specific_item or valid_anyitem or valid_emptyhand:
-				_valid_click()
-
-		# second case: some item is active, but its not a specific required item
-		elif Inventory.is_any_item_active():
-			_play_bad_item_response()
-
-		# last case: no item is active
+			var anyitem := _required_item == &"ANYITEM"
+			if anyitem:
+				if Inventory.is_any_item_active() or allow_emptyhand_if_required:
+					Inventory.set_release_callback(_valid_click)
+				else:
+					# you need some item, any item
+					Inventory.set_release_callback(_play_random_missing_required_item_response)
+			else:
+				if Inventory.is_item_active(_required_item):
+					Inventory.set_release_callback(_valid_click)
+				elif allow_emptyhand_if_required and not Inventory.is_any_item_active():
+					Inventory.set_release_callback(_valid_click)
+				else:
+					Inventory.set_release_callback(_play_random_missing_required_item_response)
 		else:
-			_play_random_missing_required_item_response()
+			# behavior when _required_item is blank. in this case, emptyhand is
+			# required
+			if Inventory.is_any_item_active():
+				# you must use emptyhand, play the same responses as if you were
+				# using the wrong item on something that does require an item.
+				# TODO: custom responses for emptyhand interactables, like maybe
+				# "I dont need anything special to use this" or "I need to use
+				# my bare hands".
+				Inventory.set_release_callback(_play_bad_item_response)
+			else:
+				Inventory.set_release_callback(_valid_click)

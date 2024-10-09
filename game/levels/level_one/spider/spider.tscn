@@ -22,7 +22,8 @@ texture = ExtResource("3_kegdu")
 centered = false
 
 [node name="Interactable" parent="SpiderSprite" instance=ExtResource("4_5ek5y")]
-_required_item = &"ANYITEM_OR_EMPTYHAND"
+allow_emptyhand_if_required = true
+_required_item = &"potion_spider"
 
 [node name="Area2D" type="Area2D" parent="SpiderSprite/Interactable"]
 
@@ -50,4 +51,5 @@ scale = Vector2(0.75, 0.75)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Item/Interactable/Area2D"]
 polygon = PackedVector2Array(15, 29, 33, -6, 131, -1, 160, 54, 204, 133, 177, 175, 122, 183, 64, 152, 23, 112, 6, 72)
 
-[connection signal="clicked" from="SpiderSprite/Interactable" to="." method="interacted"]
+[connection signal="clicked_emptyhand" from="SpiderSprite/Interactable" to="." method="interacted"]
+[connection signal="clicked_item" from="SpiderSprite/Interactable" to="." method="spider_given"]
