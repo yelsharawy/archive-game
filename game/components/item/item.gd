@@ -1,27 +1,35 @@
 class_name Item
 extends Node2D
 
+## Fires whenever the item is picked up from the world.
+signal picked_up()
+
 @export var id: StringName = &"NAME_ME"
 
-var click_area: Area2D
-var sprite: Sprite2D
+var clickable := false:
+	get:
+		return _click_area.visible
+	set(value):
+		_click_area.visible = value
 
-## Called by the Inventory when a player tries to put the active
-## item down on something
-## TODO: move this to Inventory
-func _place_in_world(new_parent: Node, keep_transform: bool) -> void:
-	click_area.visible = true
-	reparent(new_parent, keep_transform)
+var _click_area: Area2D
+var _sprite: Sprite2D
 
 func _ready() -> void:
-	if not click_area:
-		click_area = ComponentUtil.get_one_child_of_type(self, Area2D)
-	if not sprite:
-		sprite = ComponentUtil.get_one_child_of_type(self, Sprite2D)
+	if not _click_area:
+		_click_area = ComponentUtil.get_one_child_of_type(self, Area2D)
+	if not _sprite:
+		_sprite = ComponentUtil.get_one_child_of_type(self, Sprite2D)
 
-	click_area.input_event.connect(_area_input)
+	_click_area.input_event.connect(_area_input)
+
+## Called by Inventory
+func _emit_picked_up() -> void:
+	picked_up.emit()
 
 func _area_input(_viewport: Node, ev: InputEvent, _shape: int) -> void:
 	if ev.is_action_pressed(&"mouse_click_primary"):
 		# let the inventory handle the behavior of clicking an item
+		# NOTE: not using a signal because i just. please can this be simple
+		# and explicit
 		Inventory._item_clicked(self)

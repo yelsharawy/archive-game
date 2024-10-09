@@ -77,12 +77,9 @@ id = &"screwdriver"
 texture_filter = 1
 texture = ExtResource("2_j27p1")
 
-[node name="Interactable" parent="Screwdriver" instance=ExtResource("3_yg1d3")]
-_required_event = &"moved_shelf"
+[node name="Area2D" type="Area2D" parent="Screwdriver"]
 
-[node name="Area2D" type="Area2D" parent="Screwdriver/Interactable"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Screwdriver/Interactable/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Screwdriver/Area2D"]
 polygon = PackedVector2Array(-20, 8, -30, -23, 2, -43, 23, -10, 27, 19, 16, 39, -6, 24)
 
 [node name="Shelf" type="Sprite2D" parent="."]

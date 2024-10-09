@@ -17,7 +17,7 @@ func speak() -> void:
 	if Inventory.has_item(&"crowbar") and not Events.has_event_happened(&"moved_shelf"):
 		if _commented:
 			return
-		Comments.post(Comments.create(0, lines_has_crowbar.pick_random(), "user8237490234"))
+		Comments.post(Comments.create(0, lines_has_crowbar.pick_random(), "gh0st"))
 		DialogueDisplay.npc_remark(npc_name, "---------")
 		_commented = true
 		return

@@ -109,13 +109,10 @@ texture_filter = 1
 position = Vector2(-19.5, -13.5)
 texture = ExtResource("2_fwao6")
 
-[node name="Interactable" parent="Safe/SafeOpenItem" instance=ExtResource("3_mcdii")]
+[node name="Area2D" type="Area2D" parent="Safe/SafeOpenItem"]
 position = Vector2(1.5, 0.5)
-_required_event = &"anvil_picked_up"
 
-[node name="Area2D" type="Area2D" parent="Safe/SafeOpenItem/Interactable"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Safe/SafeOpenItem/Interactable/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Safe/SafeOpenItem/Area2D"]
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_pe2qq")
 
@@ -123,12 +120,9 @@ shape = SubResource("RectangleShape2D_pe2qq")
 position = Vector2(265, 229)
 id = &"anvil"
 
-[node name="Interactable" parent="Safe/AnvilItem" instance=ExtResource("3_mcdii")]
-_required_event = &"safe_unlocked"
+[node name="Area2D" type="Area2D" parent="Safe/AnvilItem"]
 
-[node name="Area2D" type="Area2D" parent="Safe/AnvilItem/Interactable"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Safe/AnvilItem/Interactable/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Safe/AnvilItem/Area2D"]
 position = Vector2(-3.5, 6.5)
 shape = SubResource("RectangleShape2D_qkjg5")
 
@@ -324,8 +318,8 @@ polygon = PackedVector2Array(76, 32, 489, 33, 487, 369, 61, 370)
 [connection signal="clicked" from="WinGameInteractable" to="." method="win"]
 [connection signal="on_happen" from="Safe/VentClearEvent" to="." method="win"]
 [connection signal="on_happen" from="Safe/VentClearEvent" to="WinGameInteractable" method="set_visible" binds= [true]]
-[connection signal="clicked" from="Safe/SafeOpenItem/Interactable" to="Safe/VentClearEvent" method="happen"]
-[connection signal="clicked" from="Safe/AnvilItem/Interactable" to="Safe/AnvilEvent" method="happen"]
+[connection signal="picked_up" from="Safe/SafeOpenItem" to="Safe/VentClearEvent" method="happen" flags=6]
+[connection signal="picked_up" from="Safe/AnvilItem" to="Safe/AnvilEvent" method="happen" flags=6]
 [connection signal="correct_pin_entered" from="SafeDoor" to="Safe" method="safedoor_opened"]
 [connection signal="correct_pin_entered" from="SafeDoor" to="SafeDoor/Event" method="happen"]
 [connection signal="clicked" from="VentTransform/Interactable" to="VentTransform" method="interacted"]

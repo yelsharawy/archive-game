@@ -42,13 +42,11 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_2jq4i")
 centered = false
 
-[node name="Interactable" parent="Item" instance=ExtResource("4_5ek5y")]
+[node name="Area2D" type="Area2D" parent="Item"]
 position = Vector2(-76, -61)
 scale = Vector2(0.75, 0.75)
 
-[node name="Area2D" type="Area2D" parent="Item/Interactable"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Item/Interactable/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Item/Area2D"]
 polygon = PackedVector2Array(15, 29, 33, -6, 131, -1, 160, 54, 204, 133, 177, 175, 122, 183, 64, 152, 23, 112, 6, 72)
 
 [connection signal="clicked_emptyhand" from="SpiderSprite/Interactable" to="." method="interacted"]

@@ -44,9 +44,7 @@ id = &"crowbar"
 texture_filter = 1
 texture = ExtResource("3_rqyes")
 
-[node name="Interactable" parent="Crowbar" instance=ExtResource("4_r4377")]
+[node name="Area2D" type="Area2D" parent="Crowbar"]
 
-[node name="Area2D" type="Area2D" parent="Crowbar/Interactable"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Crowbar/Interactable/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Crowbar/Area2D"]
 polygon = PackedVector2Array(-44, 39, -34, 17, -21, -18, -11, -39, -5, -80, 29, -86, 21, -45, 4, 10, -4, 55, -22, 97, -51, 98, -52, 68)

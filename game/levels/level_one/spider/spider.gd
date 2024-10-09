@@ -14,7 +14,6 @@ func spider_given() -> void:
 	for child in get_children():
 		if child is Item:
 			child.visible = false
-	return
 
 func interacted() -> void:
 	DialogueDisplay.npc_remark("big spider", lines.pick_random())
