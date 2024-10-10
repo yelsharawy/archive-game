@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cupp3pxcecnts"]
 
 [ext_resource type="Script" path="res://game/autoload/scene_stack/scene_stack.gd" id="1_7vh0y"]
-[ext_resource type="Texture2D" uid="uid://djoytivy4wfs6" path="res://assets/programmer/ui/back_arrow.aseprite" id="2_vqiep"]
-[ext_resource type="Texture2D" uid="uid://bn73x67dt5qs3" path="res://assets/programmer/ui/back_arrow_hovered.aseprite" id="3_mmp24"]
+[ext_resource type="Texture2D" uid="uid://5qoljp3in4bu" path="res://assets/programmer/ui/back_arrow.png" id="2_s6j56"]
+[ext_resource type="Texture2D" uid="uid://bvyu1o7uemwfb" path="res://assets/programmer/ui/back_arrow_hovered.png" id="3_4k5uk"]
 
 [node name="SceneStack" type="Control"]
 layout_mode = 3
@@ -19,5 +19,5 @@ offset_top = 258.0
 offset_right = 83.0
 offset_bottom = 322.0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_vqiep")
-texture_hover = ExtResource("3_mmp24")
+texture_normal = ExtResource("2_s6j56")
+texture_hover = ExtResource("3_4k5uk")

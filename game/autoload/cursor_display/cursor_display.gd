@@ -20,9 +20,9 @@ func cursor_display_always_pointer() -> Input.CursorShape:
 
 func display_for_area(area: Area2D, get_cursor_shape := cursor_display_always_pointer) -> void:
 	area.mouse_entered.connect(_on_interactable_hovered.bind(get_cursor_shape, area))
-	area.mouse_exited.connect(_on_interactable_unhovered.bind(get_cursor_shape, area))
+	area.mouse_exited.connect(_on_interactable_unhovered.bind(area))
 	# cover all of our bases
-	area.tree_exited.connect(_on_interactable_unhovered.bind(get_cursor_shape, area))
+	area.tree_exited.connect(_on_interactable_unhovered.bind(area))
 
 func _evaluate_cursor() -> void:
 	var cshape := Input.CURSOR_ARROW
@@ -59,7 +59,7 @@ func _on_interactable_hovered(get_cursor_shape: Callable, area: Area2D) -> void:
 	_hovers_by_shape[cshape][area] = true
 	_evaluate_cursor()
 
-func _on_interactable_unhovered(get_cursor_shape: Callable, area: Area2D) -> void:
+func _on_interactable_unhovered(area: Area2D) -> void:
 	if not _initial_shape_by_area.has(area):
 		# already removed
 		return
