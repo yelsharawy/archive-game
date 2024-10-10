@@ -30,14 +30,14 @@ func _ready() -> void:
 	_click_area = ComponentUtil.get_one_child_of_type(self, Area2D)
 
 	_click_area.input_event.connect(area_input)
-	_click_area.mouse_entered.connect(_hovered)
-	_click_area.mouse_exited.connect(_unhovered)
 
-func _hovered() -> void:
-	pass
+	CursorDisplay.display_for_area(_click_area, _get_cursor_shape)
 
-func _unhovered() -> void:
-	pass
+func _get_cursor_shape() -> Input.CursorShape:
+	# we may want to not show a pointer if this interactable isnt "unlocked" yet
+	if not _required_event.is_empty() and not Events.has_event_happened(_required_event):
+		return Input.CURSOR_ARROW
+	return Input.CURSOR_POINTING_HAND
 
 func _random_line(a: Array[String]) -> String:
 	assert(not a.is_empty())

@@ -22,6 +22,7 @@ func _ready() -> void:
 		_sprite = ComponentUtil.get_one_child_of_type(self, Sprite2D)
 
 	_click_area.input_event.connect(_area_input)
+	CursorDisplay.display_for_area(_click_area)
 
 ## Called by Inventory
 func _emit_picked_up() -> void:

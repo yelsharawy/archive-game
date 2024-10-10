@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ntvncth5mnd"]
+
+[ext_resource type="Script" path="res://game/autoload/cursor_display/cursor_display.gd" id="1_vnhn3"]
+
+[node name="CursorDisplay" type="Node2D"]
+script = ExtResource("1_vnhn3")
